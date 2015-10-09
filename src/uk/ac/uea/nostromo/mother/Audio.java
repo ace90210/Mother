@@ -1,4 +1,4 @@
-package com.kilobolt.framework;
+package uk.ac.uea.nostromo.mother;
 
 public interface Audio {
     public Music createMusic(String file);

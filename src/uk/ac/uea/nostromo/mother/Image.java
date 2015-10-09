@@ -1,6 +1,6 @@
-package com.kilobolt.framework;
+package uk.ac.uea.nostromo.mother;
 
-import com.kilobolt.framework.Graphics.ImageFormat;
+import uk.ac.uea.nostromo.mother.Graphics.ImageFormat;
 
 public interface Image {
     public int getWidth();

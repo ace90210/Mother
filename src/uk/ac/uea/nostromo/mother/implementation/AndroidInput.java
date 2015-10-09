@@ -1,4 +1,4 @@
-package com.kilobolt.framework.implementation;
+package uk.ac.uea.nostromo.mother.implementation;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import android.content.Context;
 import android.os.Build.VERSION;
 import android.view.View;
 
-import com.kilobolt.framework.Input;
+import uk.ac.uea.nostromo.mother.Input;
 
 public class AndroidInput implements Input {    
     TouchHandler touchHandler;

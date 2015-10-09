@@ -1,9 +1,9 @@
-package com.kilobolt.framework.implementation;
+package uk.ac.uea.nostromo.mother.implementation;
 
 import android.graphics.Bitmap;
 
-import com.kilobolt.framework.Image;
-import com.kilobolt.framework.Graphics.ImageFormat;
+import uk.ac.uea.nostromo.mother.Image;
+import uk.ac.uea.nostromo.mother.Graphics.ImageFormat;
 
 public class AndroidImage implements Image {
     Bitmap bitmap;

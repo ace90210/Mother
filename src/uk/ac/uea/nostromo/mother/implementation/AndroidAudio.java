@@ -1,4 +1,4 @@
-package com.kilobolt.framework.implementation;
+package uk.ac.uea.nostromo.mother.implementation;
 
 import java.io.IOException;
 
@@ -8,9 +8,9 @@ import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
-import com.kilobolt.framework.Audio;
-import com.kilobolt.framework.Music;
-import com.kilobolt.framework.Sound;
+import uk.ac.uea.nostromo.mother.Audio;
+import uk.ac.uea.nostromo.mother.Music;
+import uk.ac.uea.nostromo.mother.Sound;
 
 public class AndroidAudio implements Audio {
     AssetManager assets;

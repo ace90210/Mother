@@ -1,4 +1,4 @@
-package com.kilobolt.framework.implementation;
+package uk.ac.uea.nostromo.mother.implementation;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,12 +11,12 @@ import android.os.PowerManager.WakeLock;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.kilobolt.framework.Audio;
-import com.kilobolt.framework.FileIO;
-import com.kilobolt.framework.Game;
-import com.kilobolt.framework.Graphics;
-import com.kilobolt.framework.Input;
-import com.kilobolt.framework.Screen;
+import uk.ac.uea.nostromo.mother.Audio;
+import uk.ac.uea.nostromo.mother.FileIO;
+import uk.ac.uea.nostromo.mother.Game;
+import uk.ac.uea.nostromo.mother.Graphics;
+import uk.ac.uea.nostromo.mother.Input;
+import uk.ac.uea.nostromo.mother.Screen;
 
 public abstract class AndroidGame extends Activity implements Game {
     AndroidFastRenderView renderView;

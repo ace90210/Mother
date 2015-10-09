@@ -1,4 +1,4 @@
-package com.kilobolt.framework.implementation;
+package uk.ac.uea.nostromo.mother.implementation;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,8 +13,8 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
 
-import com.kilobolt.framework.Graphics;
-import com.kilobolt.framework.Image;
+import uk.ac.uea.nostromo.mother.Graphics;
+import uk.ac.uea.nostromo.mother.Image;
 
 public class AndroidGraphics implements Graphics {
     AssetManager assets;

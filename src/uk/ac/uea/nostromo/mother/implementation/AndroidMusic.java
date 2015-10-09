@@ -1,4 +1,4 @@
-package com.kilobolt.framework.implementation;
+package uk.ac.uea.nostromo.mother.implementation;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.media.MediaPlayer.OnVideoSizeChangedListener;
 
-import com.kilobolt.framework.Music;
+import uk.ac.uea.nostromo.mother.Music;
 
 public class AndroidMusic implements Music, OnCompletionListener, OnSeekCompleteListener, OnPreparedListener, OnVideoSizeChangedListener {
     MediaPlayer mediaPlayer;

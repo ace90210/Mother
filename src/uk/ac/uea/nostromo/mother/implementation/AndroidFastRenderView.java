@@ -1,4 +1,4 @@
-package com.kilobolt.framework.implementation;
+package uk.ac.uea.nostromo.mother.implementation;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

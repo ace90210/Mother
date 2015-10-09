@@ -1,4 +1,4 @@
-package com.kilobolt.framework.implementation;
+package uk.ac.uea.nostromo.mother.implementation;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,7 +13,7 @@ import android.content.res.AssetManager;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
-import com.kilobolt.framework.FileIO;
+import uk.ac.uea.nostromo.mother.FileIO;
 
 public class AndroidFileIO implements FileIO {
     Context context;

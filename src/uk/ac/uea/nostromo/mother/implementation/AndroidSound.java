@@ -1,8 +1,8 @@
-package com.kilobolt.framework.implementation;
+package uk.ac.uea.nostromo.mother.implementation;
 
 import android.media.SoundPool;
 
-import com.kilobolt.framework.Sound;
+import uk.ac.uea.nostromo.mother.Sound;
 
 public class AndroidSound implements Sound {
     int soundId;

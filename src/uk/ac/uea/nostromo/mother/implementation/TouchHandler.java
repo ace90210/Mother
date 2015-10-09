@@ -1,10 +1,10 @@
-package com.kilobolt.framework.implementation;
+package uk.ac.uea.nostromo.mother.implementation;
 
 import java.util.List;
 
 import android.view.View.OnTouchListener;
 
-import com.kilobolt.framework.Input.TouchEvent;
+import uk.ac.uea.nostromo.mother.Input.TouchEvent;
 
 public interface TouchHandler extends OnTouchListener {
     public boolean isTouchDown(int pointer);
