@@ -6,6 +6,13 @@ import android.graphics.Rect;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+/**
+ * Handles fast rendering on a separate thread which handles the updating and then
+ * to the screen in a continues loop until paused or disposed.
+ *  *
+ * @author unascribed
+ * @version V1.0.0
+ */
 public class AndroidFastRenderView extends SurfaceView implements Runnable {
     AndroidGame game;
     Bitmap framebuffer;
@@ -13,6 +20,12 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable {
     SurfaceHolder holder;
     volatile boolean running = false;
     
+	/**
+	 * Class Constructor
+	 *
+	 * @param game An instance of the main game object.
+	 * @param framebuffer The Bitmap frame buffer to draw the rendering onto.
+	 */
     public AndroidFastRenderView(AndroidGame game, Bitmap framebuffer) {
         super(game);
         this.game = game;
@@ -21,6 +34,9 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable {
 
     }
 
+	/**
+	 * Resumes the game loop thread. This resumes both updating and rendering of the game.
+	 */
     public void resume() { 
         running = true;
         renderThread = new Thread(this);
@@ -28,6 +44,9 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable {
 
     }      
     
+	/**
+	 * Runs the game loop. which updates the game, processing the rendering and then copies the render a canvas to display. Loop ends when {@link #pause() pause} is ran.
+	 */
     public void run() {
         Rect dstRect = new Rect();
         long startTime = System.nanoTime();
@@ -58,6 +77,9 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable {
         }
     }
 
+	/**
+	 * Pauses the current game loop.
+	 */
     public void pause() {                        
         running = false;                        
         while(true) {
