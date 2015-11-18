@@ -52,7 +52,8 @@ public class AndroidGraphics implements Graphics {
 	 */
     @Override
     public Image newImage(String fileName, ImageFormat format) {
-        Config config = null;
+		Config config;
+
         if (format == ImageFormat.RGB565)
             config = Config.RGB_565;
         else if (format == ImageFormat.ARGB4444)

@@ -60,7 +60,7 @@ public class Pool<T> {
 	 * @return	A new object.
 	 */
     public T newObject() {
-        T object = null;
+		T object;
 
         if (freeObjects.size() == 0)
             object = factory.createObject();
