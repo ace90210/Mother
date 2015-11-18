@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -50,7 +52,15 @@ public abstract class AndroidGame extends Activity implements Game {
 	 */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+		Display display;
+		Point displaySize;
+
         super.onCreate(savedInstanceState);
+
+		display = getWindowManager().getDefaultDisplay();
+
+		displaySize = new android.graphics.Point(0, 0);
+		display.getSize(displaySize);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -62,10 +72,8 @@ public abstract class AndroidGame extends Activity implements Game {
         Bitmap frameBuffer = Bitmap.createBitmap(frameBufferWidth,
                 frameBufferHeight, Config.RGB_565);
         
-        float scaleX = (float) frameBufferWidth
-                / getWindowManager().getDefaultDisplay().getWidth();
-        float scaleY = (float) frameBufferHeight
-                / getWindowManager().getDefaultDisplay().getHeight();
+		float scaleX = (float) frameBufferWidth / displaySize.x;
+		float scaleY = (float) frameBufferHeight / displaySize.y;
 
         renderView = new AndroidFastRenderView(this, frameBuffer);
         graphics = new AndroidGraphics(getAssets(), frameBuffer);
@@ -75,8 +83,7 @@ public abstract class AndroidGame extends Activity implements Game {
         screen = getInitScreen();
         setContentView(renderView);
         
-        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "MyGame");
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
 	/**
