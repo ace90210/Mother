@@ -47,7 +47,6 @@ public class AndroidGraphics implements Graphics {
 	 * @param fileName The filename of the image asset to be loaded
 	 * @param format The image format of the file to be loaded.
 	 * @return An AndroidImage object for the image
-	 * @exception IOException
 	 * @exception RuntimeException
 	 */
     @Override

@@ -48,7 +48,7 @@ public abstract class AndroidGame extends Activity implements Game {
 	 * Instantiates the main renderer, graphics object (for handling basic graphical operations such as  drawing to the canvas),
 	 * the file input and output handler, audio handler, user input handler and the main screen.
 	 * Enables the wakelock to disable android locking the screen while the app is active.
-	 * @param savedInstanceState
+	 * @param	savedInstanceState	{@inheritDoc}
 	 */
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -96,7 +96,6 @@ public class AndroidMusic implements Music, OnCompletionListener, OnSeekComplete
 	 * Begins playback of music, if music is already playing does nothing.
 	 *
 	 * @exception IllegalStateException
-	 * @exception IOException
 	 */
     @Override
     public void play() {

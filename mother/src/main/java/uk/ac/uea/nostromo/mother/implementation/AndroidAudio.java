@@ -39,7 +39,6 @@ public class AndroidAudio implements Audio {
 	 * Creates an instance of a Music object.
 	 * @param filename The URL for the audio file to be loaded.
 	 * @return A new instance of a music object for the file specified.
-	 * @exception IOException
 	 */
     @Override
     public Music createMusic(String filename) {
@@ -55,7 +54,6 @@ public class AndroidAudio implements Audio {
 	 * Creates an instance of a Sound object.
 	 * @param filename The URL for the audio file to be loaded.
 	 * @return A new instance of a sound object for the file specified.
-	 * @exception IOException
 	 */
     @Override
     public Sound createSound(String filename) {
