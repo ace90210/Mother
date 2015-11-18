@@ -138,14 +138,18 @@ public class AndroidMusic implements Music, OnCompletionListener, OnSeekComplete
 	 * Stops music playback(if running).
 	 */
     @Override
-    public void stop() {
-         if (this.mediaPlayer.isPlaying() == true){
-        this.mediaPlayer.stop();
-        
-       synchronized (this) {
-           isPrepared = false;
-        }}
-    }
+	public void stop() {
+		boolean isPlaying;
+
+		isPlaying = mediaPlayer.isPlaying();
+		if (isPlaying) {
+			mediaPlayer.stop();
+
+			synchronized (this) {
+				isPrepared = false;
+			}
+		}
+	}
 
 	/**
 	 * Event thrown on completion of music playback.
