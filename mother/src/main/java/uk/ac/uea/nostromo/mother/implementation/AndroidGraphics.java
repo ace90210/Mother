@@ -12,6 +12,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
+import android.util.Log;
 
 import uk.ac.uea.nostromo.mother.Graphics;
 import uk.ac.uea.nostromo.mother.Image;
@@ -21,6 +22,8 @@ import uk.ac.uea.nostromo.mother.Image;
  * such as text, shapes and images.
  */
 public class AndroidGraphics implements Graphics {
+	private static final String TAG = "AndroidGraphics";
+
     AssetManager assets;
     Bitmap frameBuffer;
     Canvas canvas;
@@ -80,6 +83,7 @@ public class AndroidGraphics implements Graphics {
                 try {
                     in.close();
                 } catch (IOException e) {
+					Log.d(TAG, "Failed to close `InputStream` after attempting to build a new image.", e);
                 }
             }
         }
