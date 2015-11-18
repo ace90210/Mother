@@ -18,7 +18,7 @@ public interface Input {
 	 * @version	v1.0.0
 	 * @since	!_TODO__ [Alex Melbourne <a.melbourne@uea.ac.uk>] : Update this label before new release.
 	 */
-    public static class TouchEvent {
+	class TouchEvent {
 		/**
 		 * Integer value indicating a tap event.
 		 */
@@ -66,7 +66,7 @@ public interface Input {
 	 *			tap event.
 	 * @see	TouchEvent
 	 */
-    public boolean isTouchDown(int pointer);
+	boolean isTouchDown(int pointer);
 
 	/**
 	 * Get the {@code x} attribute for a given {@code TouchEvent}.
@@ -75,7 +75,7 @@ public interface Input {
 	 *					tested.
 	 * @see	TouchEvent#x
 	 */
-    public int getTouchX(int pointer);
+	int getTouchX(int pointer);
 
 	/**
 	 * Get the {@code y} attribute for a given {@code TouchEvent}.
@@ -84,7 +84,7 @@ public interface Input {
 	 *					tested.
 	 * @see	TouchEvent#y
 	 */
-    public int getTouchY(int pointer);
+	int getTouchY(int pointer);
 
 	/**
 	 * Get the currently buffered events that haven't yet been
@@ -92,5 +92,5 @@ public interface Input {
 	 *
 	 * @return	A list structure containing all unprocessed events.
 	 */
-    public List<TouchEvent> getTouchEvents();
+	List<TouchEvent> getTouchEvents();
 }

@@ -24,7 +24,7 @@ public class Pool<T> {
 	 * @since	!_TODO__ [Alex Melbourne <a.melbourne@uea.ac.uk>] : Update this label before new release.
 	 */
     public interface PoolObjectFactory<T> {
-        public T createObject();
+		T createObject();
     }
 
 	/**

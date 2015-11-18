@@ -14,31 +14,31 @@ public interface Music {
 	/**
 	 * Play the contained audio file.
 	 */
-    public void play();
+	void play();
 
 	/**
 	 * Stop the contained audio file.
 	 */
-    public void stop();
+	void stop();
 
 	/**
 	 * Pause the contained audio file.
 	 */
-    public void pause();
+	void pause();
 
 	/**
 	 * Set the boolean flag to indicate if this audio file should loop.
 	 *
 	 * @param	looping	The flag representing the new loop status.
 	 */
-    public void setLooping(boolean looping);
+	void setLooping(boolean looping);
 
 	/**
 	 * Set the play volume of this audio.
 	 *
 	 * @param	volume	A value representing the volume of the audio.
 	 */
-    public void setVolume(float volume);
+	void setVolume(float volume);
 
 	/**
 	 * Gain details about the current play state of this audio file.
@@ -47,7 +47,7 @@ public interface Music {
 	 *			playing.
 	 * @see 	#isStopped()
 	 */
-    public boolean isPlaying();
+	boolean isPlaying();
 
 	/**
 	 * Gain details about the current play state of this audio file.
@@ -56,19 +56,19 @@ public interface Music {
 	 *			stopped.
 	 * @see		#isPlaying()
 	 */
-    public boolean isStopped();
+	boolean isStopped();
 
 	/**
 	 * Gain details about the current state of the loop flag.
 	 *
 	 * @return	A boolean value indicating if the audio will loop.
 	 */
-    public boolean isLooping();
+	boolean isLooping();
 
 	/**
 	 * Remove the internal data storing this audio file.
 	 */
-    public void dispose();
+	void dispose();
 
 	/**
 	 * Move the playback marker to the beginning of the audio.

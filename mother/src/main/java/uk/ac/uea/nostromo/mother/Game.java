@@ -14,28 +14,28 @@ public interface Game {
 	 *
 	 * @return	The {@code Audio} singleton.
 	 */
-	public Audio getAudio();
+	Audio getAudio();
 
 	/**
 	 * Gain a reference to the {@code Audio} singleton.
 	 *
 	 * @return	The {@code Audio} singleton.
 	 */
-    public Input getInput();
+	Input getInput();
 
 	/**
 	 * Gain a reference to the {@code FileIO} singleton.
 	 *
 	 * @return	The {@code FileIO} singleton.
 	 */
-    public FileIO getFileIO();
+	FileIO getFileIO();
 
 	/**
 	 * Gain a reference to the {@code Graphics} singleton.
 	 *
 	 * @return	The {@code Graphics} singleton.
 	 */
-    public Graphics getGraphics();
+	Graphics getGraphics();
 
 	/**
 	 * Set the screen.
@@ -43,20 +43,20 @@ public interface Game {
 	 * @param	screen	The new screen object on to which we should
 	 *					draw.
 	 */
-    public void setScreen(Screen screen);
+	void setScreen(Screen screen);
 
 	/**
 	 * Gain a reference to the {@code Audio} singleton.
 	 *
 	 * @return	The {@code Screen} singleton.
 	 */
-    public Screen getCurrentScreen();
+	Screen getCurrentScreen();
 
 	/**
 	 * Get a reference to the original screen.
 	 *
 	 * @return	The {@code Screen} singleton.
 	 */
-    public Screen getInitScreen();
+	Screen getInitScreen();
 	
 }

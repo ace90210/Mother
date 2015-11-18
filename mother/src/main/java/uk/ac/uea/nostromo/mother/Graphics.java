@@ -15,7 +15,7 @@ public interface Graphics {
 	 *
 	 * @since	!_TODO__ [Alex Melbourne <a.melbourne@uea.ac.uk>] : Update this label before new release.
 	 */
-	public static enum ImageFormat {
+	enum ImageFormat {
         ARGB8888, ARGB4444, RGB565
     }
 
@@ -28,7 +28,7 @@ public interface Graphics {
 	 *						the image is interpreted.
 	 * @return	An {@code Image} object based on the method input.
 	 */
-    public Image newImage(String fileName, ImageFormat format);
+	Image newImage(String fileName, ImageFormat format);
 
 	/**
 	 * Clear the framebuffer of the current screen to a specific colour.
@@ -36,7 +36,7 @@ public interface Graphics {
 	 * @param	color	A representation of some  colour to which the
 	 *					framebuffer should be cleared.
 	 */
-    public void clearScreen(int color);
+	void clearScreen(int color);
 
 	/**
 	 * Draw a line of fixed length, and of given colour between two
@@ -48,7 +48,7 @@ public interface Graphics {
 	 * @param	y2		The y-coordinate of the second point.
 	 * @param	color	The colour of the line to be drawn.
 	 */
-    public void drawLine(int x, int y, int x2, int y2, int color);
+	void drawLine(int x, int y, int x2, int y2, int color);
 
 	/**
 	 * Draw a rectangle whose top-left corner can be found at
@@ -62,7 +62,7 @@ public interface Graphics {
 	 * @param	height	The height of the rectangle.
 	 * @param	color	The desired colour of the rectangle.
 	 */
-    public void drawRect(int x, int y, int width, int height, int color);
+	void drawRect(int x, int y, int width, int height, int color);
 
 	/**
 	 * Take an image from a sprite-sheet and draw it to the screen.
@@ -81,7 +81,7 @@ public interface Graphics {
 	 * @param	srcHeight	The height of the source of the sprite on
 	 *						the sprite-sheet.
 	 */
-    public void drawImage(Image image, int x, int y, int srcX, int srcY,
+	void drawImage(Image image, int x, int y, int srcX, int srcY,
             int srcWidth, int srcHeight);
 
 	/**
@@ -93,7 +93,7 @@ public interface Graphics {
 	 * @param	y		The y-coordinate of the top-left corner of the
 	 *					image.
 	 */
-    public void drawImage(Image Image, int x, int y);
+	void drawImage(Image Image, int x, int y);
 
 	/**
 	 * Draw a string of text to the screen.
@@ -112,14 +112,14 @@ public interface Graphics {
 	 *
 	 * @return	The width of the screen.
 	 */
-    public int getWidth();
+	int getWidth();
 
 	/**
 	 * Get the height of the screen.
 	 *
 	 * @return The height of the screen.
 	 */
-    public int getHeight();
+	int getHeight();
 
 	/**
 	 * !_TODO__ [Alex Melbourne <a.melbourne@uea.ac.uk>] : What exactly does this method do?
@@ -133,5 +133,5 @@ public interface Graphics {
 	 * @param	l	A poorly name reference to -- presumably -- the blue
 	 *				component of the colour.
 	 */
-    public void drawARGB(int i, int j, int k, int l);
+	void drawARGB(int i, int j, int k, int l);
 }

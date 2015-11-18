@@ -16,21 +16,21 @@ public interface Image {
 	 *
 	 * @return	The width -- in pixels -- of the stored image.
 	 */
-    public int getWidth();
+	int getWidth();
 	/**
 	 * Get a pixel count representation of the height of the image.
 	 *
 	 * @return	The height -- in pixels -- of the stored image.
 	 */
-    public int getHeight();
+	int getHeight();
 	/**
 	 * Get the pixel format of the stored image.
 	 *
 	 * @return	A value representing the bytewise format of the image.
 	 */
-    public ImageFormat getFormat();
+	ImageFormat getFormat();
 	/**
 	 * Remove the underlying data being used to store the image.
 	 */
-    public void dispose();
+	void dispose();
 }

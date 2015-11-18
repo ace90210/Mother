@@ -121,12 +121,12 @@ public class MultiTouchHandler implements TouchHandler {
 	 */
     @Override
     public boolean isTouchDown(int pointer) {
+		int index;
+
         synchronized (this) {
-            int index = getIndex(pointer);
-            if (index < 0 || index >= MAX_TOUCHPOINTS)
-                return false;
-            else
-                return isTouched[index];
+			index = getIndex(pointer);
+
+			return index < 0 || index >= MAX_TOUCHPOINTS && isTouched[index];
         }
     }
 
