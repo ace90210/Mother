@@ -1,5 +1,6 @@
 package uk.ac.uea.nostromo.mother.implementation;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -13,6 +14,7 @@ import android.view.SurfaceView;
  * @author unascribed
  * @version V1.0.0
  */
+@SuppressLint("ViewConstructor")
 public class AndroidFastRenderView extends SurfaceView implements Runnable {
     AndroidGame game;
     Bitmap framebuffer;
