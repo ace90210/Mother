@@ -1,4 +1,4 @@
-package com.kilobolt.framework.implementation;
+package uk.ac.uea.nostromo.mother.implementation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,13 @@ import java.util.List;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.kilobolt.framework.Pool;
-import com.kilobolt.framework.Input.TouchEvent;
-import com.kilobolt.framework.Pool.PoolObjectFactory;
+import uk.ac.uea.nostromo.mother.Pool;
+import uk.ac.uea.nostromo.mother.Input.TouchEvent;
+import uk.ac.uea.nostromo.mother.Pool.PoolObjectFactory;
 
+/**
+ * Helper class for dealing with multi touch input.
+ */
 public class MultiTouchHandler implements TouchHandler {
     private static final int MAX_TOUCHPOINTS = 10;
     
@@ -23,6 +26,13 @@ public class MultiTouchHandler implements TouchHandler {
     float scaleX;
     float scaleY;
 
+	/**
+	 * Class Constructor
+	 *
+	 * @param view Reference to the current android view.
+	 * @param scaleX The horizontal scale to use when converting from display co-ordinates and the views surface size.
+	 * @param scaleY The vertical scale to use when converting from display co-ordinates and the views surface size.
+	 */
     public MultiTouchHandler(View view, float scaleX, float scaleY) {
         PoolObjectFactory<TouchEvent> factory = new PoolObjectFactory<TouchEvent>() {
             @Override
@@ -37,6 +47,12 @@ public class MultiTouchHandler implements TouchHandler {
         this.scaleY = scaleY;
     }
 
+	/**
+	 * Event run whenever a new touch down event is detected.
+	 * @param v Reference to the current android view.
+	 * @param event The new motion event.
+	 * @return True if the listener has consumed the event, false otherwise.
+	 */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         synchronized (this) {
@@ -98,6 +114,11 @@ public class MultiTouchHandler implements TouchHandler {
         }
     }
 
+	/**
+	 * Returns If the screen is being touched using the specified pointer (used to track specific fingers).
+	 * @param pointer The pointer id for the touch to check again (default/first is 0).
+	 * @return True if the touch pointer being checked is still in the touched state.
+	 */
     @Override
     public boolean isTouchDown(int pointer) {
         synchronized (this) {
@@ -109,6 +130,11 @@ public class MultiTouchHandler implements TouchHandler {
         }
     }
 
+	/**
+	 * Returns The horizontal(x) touch position for the specified pointer.
+	 * @param pointer The touch pointer to retrieve the horizontal(x) position from.
+	 * @return the Horizontal(x) position of the touch for the specified pointer.
+	 */
     @Override
     public int getTouchX(int pointer) {
         synchronized (this) {
@@ -120,6 +146,11 @@ public class MultiTouchHandler implements TouchHandler {
         }
     }
 
+	/**
+	 * Returns The vertical(y) touch position for the specified pointer.
+	 * @param pointer The touch pointer to retrieve the vertical(y) position from.
+	 * @return The vertical(y) position of the touch for the specified pointer.
+	 */
     @Override
     public int getTouchY(int pointer) {
         synchronized (this) {
@@ -131,6 +162,10 @@ public class MultiTouchHandler implements TouchHandler {
         }
     }
 
+	/**
+	 * Retreive a List of all current touch events.
+	 * @return A List of all current touch events.
+	 */
     @Override
     public List<TouchEvent> getTouchEvents() {
         synchronized (this) {
@@ -145,6 +180,11 @@ public class MultiTouchHandler implements TouchHandler {
     }
     
     // returns the index for a given pointerId or -1 if no index.
+	/**
+	 * Returns the index for a given pointerId or -1 if no index.
+	 * @param pointerId The pointer to check for the index on.
+	 * @return The index for the given pointerId or -1 if no index.
+	 */
     private int getIndex(int pointerId) {
         for (int i = 0; i < MAX_TOUCHPOINTS; i++) {
             if (id[i] == pointerId) {
