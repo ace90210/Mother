@@ -5,12 +5,13 @@ package uk.ac.uea.nostromo.mother;
  * are short in length and designed to be played in full.
  *
  * @author	Unascribed
- * @version	v1.0.0
+ * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
+ * @version	v1.1.0
  * @since	!_TODO__ [Alex Melbourne <a.melbourne@uea.ac.uk>] : Update this label before new release.
  * @see		Audio
  * @see		Music
  */
-public interface Sound {
+public interface Sound extends Disposable {
 	/**
 	 * Play the stored sound file.
 	 *
@@ -18,9 +19,4 @@ public interface Sound {
 	 *					file should be played.
 	 */
     public void play(float volume);
-
-	/**
-	 * Remove the data representing the sound file from memory.
-	 */
-    public void dispose();
 }

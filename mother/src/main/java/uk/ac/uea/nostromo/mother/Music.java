@@ -5,12 +5,13 @@ package uk.ac.uea.nostromo.mother;
  * to be of some significant length, and paused/played as desired.
  *
  * @author	Unascribed
- * @version	v1.0.0
+ * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
+ * @version	v1.1.0
  * @since	!_TODO__ [Alex Melbourne <a.melbourne@uea.ac.uk>] : Update this label before new release.
  * @see		Audio
  * @see		Sound
  */
-public interface Music {
+public interface Music extends Disposable {
 	/**
 	 * Play the contained audio file.
 	 */
@@ -64,11 +65,6 @@ public interface Music {
 	 * @return	A boolean value indicating if the audio will loop.
 	 */
     public boolean isLooping();
-
-	/**
-	 * Remove the internal data storing this audio file.
-	 */
-    public void dispose();
 
 	/**
 	 * Move the playback marker to the beginning of the audio.

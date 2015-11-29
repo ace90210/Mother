@@ -6,11 +6,12 @@ import uk.ac.uea.nostromo.mother.Graphics.ImageFormat;
  * Simplistic image descriptor.
  *
  * @author	Unascribed
- * @version	v1.0.0
+ * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
+ * @version	v1.1.0
  * @since	!_TODO__ [Alex Melbourne <a.melbourne@uea.ac.uk>] : Update this label before new release.
  * @see		Graphics.ImageFormat
  */
-public interface Image {
+public interface Image extends Disposable {
 	/**
 	 * Get a pixel count representation of the width of the image.
 	 *
@@ -29,8 +30,4 @@ public interface Image {
 	 * @return	A value representing the bytewise format of the image.
 	 */
     public ImageFormat getFormat();
-	/**
-	 * Remove the underlying data being used to store the image.
-	 */
-    public void dispose();
 }
