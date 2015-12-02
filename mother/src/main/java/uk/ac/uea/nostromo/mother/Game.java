@@ -1,5 +1,9 @@
 package uk.ac.uea.nostromo.mother;
 
+import android.widget.TableLayout;
+
+import uk.ac.uea.nostromo.mother.implementation.Graphics;
+
 /**
  * Entry point into the framework.
  *
@@ -14,28 +18,21 @@ public interface Game {
 	 *
 	 * @return	The {@code Audio} singleton.
 	 */
-	public Audio getAudio();
-
-	/**
-	 * Gain a reference to the {@code Audio} singleton.
-	 *
-	 * @return	The {@code Audio} singleton.
-	 */
-    public Input getInput();
+	Audio getAudio();
 
 	/**
 	 * Gain a reference to the {@code FileIO} singleton.
 	 *
 	 * @return	The {@code FileIO} singleton.
 	 */
-    public FileIO getFileIO();
+	FileIO getFileIO();
 
 	/**
 	 * Gain a reference to the {@code Graphics} singleton.
 	 *
 	 * @return	The {@code Graphics} singleton.
 	 */
-    public Graphics getGraphics();
+	Graphics getGraphics();
 
 	/**
 	 * Set the screen.
@@ -43,20 +40,26 @@ public interface Game {
 	 * @param	screen	The new screen object on to which we should
 	 *					draw.
 	 */
-    public void setScreen(Screen screen);
+	void setScreen(Screen screen);
 
 	/**
 	 * Gain a reference to the {@code Audio} singleton.
 	 *
 	 * @return	The {@code Screen} singleton.
 	 */
-    public Screen getCurrentScreen();
+	Screen getCurrentScreen();
+
+	/**
+	 * Gain a refernece to the {@code TableLayout} instance.
+	 * @return The {@code TableLayout} instance.
+	 */
+	TableLayout getRootTableLayout();
 
 	/**
 	 * Get a reference to the original screen.
 	 *
 	 * @return	The {@code Screen} singleton.
 	 */
-    public Screen getInitScreen();
+	Screen getInitScreen();
 	
 }

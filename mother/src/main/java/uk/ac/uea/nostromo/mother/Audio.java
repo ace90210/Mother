@@ -17,7 +17,7 @@ public interface Audio {
 	 * @return	A fully constructed {@code Music} object containing the
 	 *			requested audio data.
 	 */
-    public Music createMusic(String file);
+	Music createMusic(String file);
 
 	/**
 	 * Create a {@code Sound} object.
@@ -27,5 +27,5 @@ public interface Audio {
 	 * @return	A fully constructed {@code Sound} object containing the
 	 *			requested audio data.
 	 */
-    public Sound createSound(String file);
+	Sound createSound(String file);
 }

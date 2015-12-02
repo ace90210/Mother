@@ -18,5 +18,10 @@ public interface Sound extends Disposable {
 	 * @param	volume	A value indicating the volume at which the sound
 	 *					file should be played.
 	 */
-    public void play(float volume);
+	void play(float volume);
+
+	/**
+	 * Remove the data representing the sound file from memory.
+	 */
+	void dispose();
 }

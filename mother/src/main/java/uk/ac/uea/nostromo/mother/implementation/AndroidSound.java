@@ -24,7 +24,7 @@ public class AndroidSound implements Sound {
 
 	/**
 	 * Plays full sound effect at the specified volume (from 0.0 - 1.0).
-	 * @param volume
+	 * @param	volume	{@inheritDoc}
 	 */
     @Override
     public void play(float volume) {

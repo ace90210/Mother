@@ -23,7 +23,7 @@ public interface FileIO {
 	 * @return	A stream representation of the file requested.
 	 * @throws	java.io.IOException	In the event I/O fails.
 	 */
-    public InputStream readFile(String file) throws IOException;
+	InputStream readFile(String file) throws IOException;
 
 	/**
 	 * Attempt to write to a file in a buffered fashion by opening a
@@ -34,7 +34,7 @@ public interface FileIO {
 	 * @return	A stream representation of the file requested.
 	 * @throws	java.io.IOException	In the event I/O fails.
 	 */
-    public OutputStream writeFile(String file) throws IOException;
+	OutputStream writeFile(String file) throws IOException;
     
 	/**
 	 * Attempt to read an asset in a buffered fashion by opening a
@@ -45,12 +45,12 @@ public interface FileIO {
 	 * @return	A stream representation of the file requested.
 	 * @throws	java.io.IOException	In the event I/O fails.
 	 */
-    public InputStream readAsset(String file) throws IOException;
+	InputStream readAsset(String file) throws IOException;
     
 	/**
 	 * Gain access to the shared preferences of the user.
 	 *
 	 * @return	An access to the {@code SharedPreferences} object.
 	 */
-    public SharedPreferences getSharedPref();
+	SharedPreferences getSharedPref();
 }
