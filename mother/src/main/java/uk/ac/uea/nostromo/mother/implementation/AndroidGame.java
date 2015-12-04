@@ -9,10 +9,16 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TableLayout;
+import android.widget.TextView;
+
+import com.example.barry.testmultiactivityswitcher.R;
 
 import uk.ac.uea.nostromo.mother.Audio;
 import uk.ac.uea.nostromo.mother.FileIO;
@@ -32,7 +38,7 @@ import uk.ac.uea.nostromo.mother.Screen;
  * @see WakeLock
  * @since	v1.0.0-alpha+20151204
  */
-public abstract class AndroidGame extends Activity implements Game {
+public abstract class AndroidGame extends AppCompatActivity implements Game {
 	/**
 	 * @since	v1.0.0-alpha+20151204
 	 */
@@ -61,7 +67,7 @@ public abstract class AndroidGame extends Activity implements Game {
 	/**
 	 * @since	v1.0.0-alpha+20151204
 	 */
-    TableLayout rootLayout;
+    protected TableLayout rootLayout;
 
 	/**
 	 * Handles the creation of the main game screen.
@@ -79,9 +85,16 @@ public abstract class AndroidGame extends Activity implements Game {
         audio = new AndroidAudio(this);
         graphics = new Graphics(this);
         screen = getInitScreen();
-        rootLayout = new TableLayout(this);
 
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        setContentView(R.layout.activity_main);
+
+        rootLayout = (TableLayout) findViewById(R.id.table_layout);
+
+        TableLayout screenLayout = screen.getTableLayout();
+
+        rootLayout.addView(screenLayout);
     }
 
 	/**
@@ -92,8 +105,9 @@ public abstract class AndroidGame extends Activity implements Game {
     @Override
     public void onResume() {
         super.onResume();
-        wakeLock.acquire();
-        screen.resume();
+        //wakeLock.acquire();
+        if(screen != null)
+            screen.resume();
     }
 
 	/**
@@ -106,10 +120,11 @@ public abstract class AndroidGame extends Activity implements Game {
     @Override
     public void onPause() {
         super.onPause();
-        wakeLock.release();
-        screen.pause();
+        //wakeLock.release();
+        if(screen != null)
+            screen.pause();
 
-        if (isFinishing())
+        if (screen != null && isFinishing())
             screen.dispose();
     }
 
@@ -153,10 +168,20 @@ public abstract class AndroidGame extends Activity implements Game {
         if (screen == null)
             throw new IllegalArgumentException("Screen must not be null");
 
-        this.screen.pause();
-        this.screen.dispose();
-        screen.resume();
-        screen.update(0);
+        rootLayout.removeAllViews();
+        rootLayout = (TableLayout) findViewById(R.id.table_layout);
+
+        rootLayout.addView(screen.getTableLayout());
+
+        if(this.screen != null) {
+            this.screen.pause();
+            this.screen.dispose();
+        }
+
+        if(screen != null){
+            screen.resume();
+            screen.update(0);
+        }
         this.screen = screen;
     }
     

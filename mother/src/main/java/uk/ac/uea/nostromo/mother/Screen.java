@@ -1,5 +1,10 @@
 package uk.ac.uea.nostromo.mother;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TableLayout;
+
 /**
  * Simple representation of the screen on which the app is being
  * displayed on.
@@ -9,12 +14,15 @@ package uk.ac.uea.nostromo.mother;
  * @since	v1.0.0-alpha+20151204
  */
 public abstract class Screen {
+    protected TableLayout screenLayout;
+
 	/**
 	 * The game that is being rendered to this screen.
 	 *
 	 * @since	v1.0.0-alpha+20151204
 	 */
     protected final Game game;
+    protected final Context context;
 
 	/**
 	 * Construct a new {@code Screen} object.
@@ -22,8 +30,13 @@ public abstract class Screen {
 	 * @param	game	The game that should be shown on this screen.
 	 * @since	v1.0.0-alpha+20151204
 	 */
-    public Screen(Game game) {
+    public Screen( Game game, Context context) {
         this.game = game;
+        this.context = context;
+        if(screenLayout == null)
+            screenLayout = new TableLayout(context);
+        else
+            screenLayout.removeAllViews();
     }
 
 	/**
@@ -71,4 +84,8 @@ public abstract class Screen {
 	 * @since	v1.0.0-alpha+20151204
 	 */
     public abstract void backButton();
+
+    public TableLayout getTableLayout(){
+        return screenLayout;
+    }
 }
