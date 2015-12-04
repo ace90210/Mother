@@ -6,7 +6,7 @@ package uk.ac.uea.nostromo.mother;
  *
  * @author	Unascribed
  * @version	v1.0.0
- * @since	!_TODO__ [Alex Melbourne <a.melbourne@uea.ac.uk>] : Update this label before new release.
+ * @since	v1.0.0-alpha+20151204
  */
 public interface Audio {
 	/**
@@ -16,6 +16,7 @@ public interface Audio {
 	 *					load.
 	 * @return	A fully constructed {@code Music} object containing the
 	 *			requested audio data.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	Music createMusic(String file);
 
@@ -26,6 +27,7 @@ public interface Audio {
 	 *					load.
 	 * @return	A fully constructed {@code Sound} object containing the
 	 *			requested audio data.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	Sound createSound(String file);
 }

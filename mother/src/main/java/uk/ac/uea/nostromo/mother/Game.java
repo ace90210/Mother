@@ -9,7 +9,7 @@ import uk.ac.uea.nostromo.mother.implementation.Graphics;
  *
  * @author	Unascribed
  * @version	v1.0.0
- * @since	!_TODO__ [Alex Melbourne <a.melbourne@uea.ac.uk>] : Update this label before new release.
+ * @since	v1.0.0-alpha+20151204
  */
 public interface Game {
 
@@ -17,6 +17,7 @@ public interface Game {
 	 * Gain a reference to the {@code Audio} singleton.
 	 *
 	 * @return	The {@code Audio} singleton.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	Audio getAudio();
 
@@ -24,6 +25,7 @@ public interface Game {
 	 * Gain a reference to the {@code FileIO} singleton.
 	 *
 	 * @return	The {@code FileIO} singleton.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	FileIO getFileIO();
 
@@ -31,6 +33,7 @@ public interface Game {
 	 * Gain a reference to the {@code Graphics} singleton.
 	 *
 	 * @return	The {@code Graphics} singleton.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	Graphics getGraphics();
 
@@ -39,6 +42,7 @@ public interface Game {
 	 *
 	 * @param	screen	The new screen object on to which we should
 	 *					draw.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	void setScreen(Screen screen);
 
@@ -46,12 +50,14 @@ public interface Game {
 	 * Gain a reference to the {@code Audio} singleton.
 	 *
 	 * @return	The {@code Screen} singleton.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	Screen getCurrentScreen();
 
 	/**
 	 * Gain a refernece to the {@code TableLayout} instance.
 	 * @return The {@code TableLayout} instance.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	TableLayout getRootTableLayout();
 
@@ -59,6 +65,7 @@ public interface Game {
 	 * Get a reference to the original screen.
 	 *
 	 * @return	The {@code Screen} singleton.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	Screen getInitScreen();
 	

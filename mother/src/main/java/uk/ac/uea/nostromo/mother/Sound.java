@@ -7,9 +7,9 @@ package uk.ac.uea.nostromo.mother;
  * @author	Unascribed
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
  * @version	v1.1.0
- * @since	!_TODO__ [Alex Melbourne <a.melbourne@uea.ac.uk>] : Update this label before new release.
  * @see		Audio
  * @see		Music
+ * @since	v1.0.0-alpha+20151204
  */
 public interface Sound extends Disposable {
 	/**
@@ -17,11 +17,14 @@ public interface Sound extends Disposable {
 	 *
 	 * @param	volume	A value indicating the volume at which the sound
 	 *					file should be played.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	void play(float volume);
 
 	/**
 	 * Remove the data representing the sound file from memory.
+	 *
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	void dispose();
 }
