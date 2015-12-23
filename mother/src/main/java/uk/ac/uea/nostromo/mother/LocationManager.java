@@ -1,30 +1,64 @@
 /*
- * LocationManager.java	v1.0.0	2015-12-02
+ * LocationManager.java	v1.1.0	2015-12-23
  */
 
 package uk.ac.uea.nostromo.mother;
+
+import android.util.Log;
 
 /**
  * Manage a mapping of {@code Location} objects alongside a
  * <i>user-friendly</i> name that can be used to retrieve it.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v1.0.0
+ * @version	v1.1.0
  * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
  */
 public class LocationManager {
+	/**
+	 * Constant runtime representation of the class name that is used
+	 * when logging information.
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @see		android.util.Log
+	 */
+	private static final String TAG = "LocationManager";
+
+	/**
+	 * Private data structure used to store the relationship between
+	 * location names, and the actual locations themselves.
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	private java.util.Map<String, Location> map;
+
+	/**
+	 * Simple constructor.
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	public LocationManager() {
+		map = new java.util.HashMap<String, Location>();
+	}
+
 	/**
 	 * Get the location that is referred to by a given name.
 	 *
 	 * @param	label	The name of the {@code Location} object desired.
 	 * @return	The location, if one exists, matching the presented
 	 *			name.
-	 * @throws	UnsupportedOperationException	In all cases. This
-	 *			method is yet to be implemented.
 	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
 	 */
 	public Location getLocation(String label) {
-		throw new UnsupportedOperationException("The method `LocationManager.getLocation(String)` is yet to be implemented.");
+		Location location;
+
+		location = map.get(label);
+		if (location == null) {
+			Log.w(TAG, "getLocation(String) is returning a location that is " +
+					"`null`. This isn't operating procedure!");
+		}
+
+		return location;
 	}
 
 	/**
@@ -51,13 +85,20 @@ public class LocationManager {
 	 *
 	 * @param	label	The name that should be assigned to a new
 	 *					pairing.
-	 * @throws	UnsupportedOperationException	In all cases. This
-	 *			method is yet to be implemented.
 	 * @see		#setLocation(String, Location)
 	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
 	 */
 	public void addLocation(String label) {
-		throw new UnsupportedOperationException("The method `LocationManager.addLocation(String)` is yet to be implemented.");
+		Location location;
+
+		Log.i(TAG, "Attempting to add the location name \'" + label + "\' to " +
+				"the location manager.");
+
+		location = map.put(label, null);
+		if (location != null) {
+			Log.w(TAG, "We've overwritten a location in our manager! Our " +
+					"lost location was marked at: " + location + ".");
+		}
 	}
 
 	/**
@@ -65,12 +106,22 @@ public class LocationManager {
 	 *
 	 * @param	label 	The name of the location that should be removed
 	 *					internally.
-	 * @throws	UnsupportedOperationException	In all cases. This
-	 *			method is yet to be implemented.
 	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
 	 */
 	public void removeLocation(String label) {
-		throw new UnsupportedOperationException("The method `LocationManager.removeLocation(String)` is yet to be implemented.");
+		Location location;
+
+		Log.i(TAG, "The location \'" + label + "\' is being removed from the " +
+				"location manager.");
+
+		location = map.remove(label);
+		if (location != null) {
+			Log.d(TAG, "We successfully removed \'" + label + "\'. Its last " +
+					"location was: " + location + ".");
+		} else {
+			Log.d(TAG, "Our location manager never contained \'" + label
+					+ "\'.");
+		}
 	}
 
 	/**
@@ -82,12 +133,16 @@ public class LocationManager {
 	 *
 	 * @param	label		The label of the location that is to be set.
 	 * @param	location	The new location.
-	 * @throws	UnsupportedOperationException	In all cases. This
-	 *			method is yet to be implemented.
 	 * @see		#addLocation(String)
 	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
 	 */
 	public void setLocation(String label, Location location) {
-		throw new UnsupportedOperationException("The method `LocationManager.setLocation(String, Location)` is yet to be implemented.");
+		Location previous;
+
+		previous = map.put(label, location);
+		if (previous != null) {
+			Log.d(TAG, "The location \'" + label + "\' was updated from "
+					+ previous + " to " + location + ".");
+		}
 	}
 }
