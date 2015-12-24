@@ -30,7 +30,8 @@ public class LocationLabelPair {
 	Location coordinates;
 
 	/**
-	 * Modify the internal <i>human-readable</i> name for this location.
+	 * Modify the internal <em>human-readable</em> name for this
+	 * location.
 	 *
 	 * @param	label	The new name for this location.
 	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.

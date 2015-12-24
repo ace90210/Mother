@@ -49,7 +49,7 @@ public class Location {
 	 * Returns the value representing the longitude of this location.
 	 *
 	 * @return	A {@code Double} object representing the longitude of
-	 *			this location in <b>degrees</b>.
+	 *			this location in <strong>degrees</strong>.
 	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
 	 */
 	public Double getLongitude() {

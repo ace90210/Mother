@@ -8,7 +8,7 @@ import android.util.Log;
 
 /**
  * Manage a mapping of {@code Location} objects alongside a
- * <i>user-friendly</i> name that can be used to retrieve it.
+ * <em>user-friendly</em> name that can be used to retrieve it.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
  * @version	v1.2.0
@@ -220,8 +220,8 @@ public class LocationManager implements android.location.LocationListener {
 	/**
 	 * Use the label-location pairing system to set the location of an already defined location label.
 	 *
-	 * <p>This method <b>does not</b> create new entries in the map. To
-	 * create entries use the
+	 * <p>This method <strong>does not</strong> create new entries in
+	 * the map. To create entries use the
 	 * {@link #addLocation(String) addLocation(String)} method.</p>
 	 *
 	 * @param	label		The label of the location that is to be set.
