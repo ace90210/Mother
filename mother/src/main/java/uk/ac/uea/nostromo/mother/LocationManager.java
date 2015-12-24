@@ -1,5 +1,5 @@
 /*
- * LocationManager.java	v1.1.0	2015-12-23
+ * LocationManager.java	v1.2.0	2015-12-24
  */
 
 package uk.ac.uea.nostromo.mother;
@@ -11,10 +11,10 @@ import android.util.Log;
  * <i>user-friendly</i> name that can be used to retrieve it.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v1.1.0
+ * @version	v1.2.0
  * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
  */
-public class LocationManager {
+public class LocationManager implements android.location.LocationListener {
 	/**
 	 * Constant runtime representation of the class name that is used
 	 * when logging information.
@@ -25,6 +25,23 @@ public class LocationManager {
 	private static final String TAG = "LocationManager";
 
 	/**
+	 * Private reference to our device's location manager so we can
+	 * access our current location.
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	private android.location.LocationManager locationManager;
+
+	/**
+	 * The last known location that we received from the system. We
+	 * don't poll the system when location is requested.
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @see		#onLocationChanged(android.location.Location)
+	 */
+	Location lastKnownLocation;
+
+	/**
 	 * Private data structure used to store the relationship between
 	 * location names, and the actual locations themselves.
 	 *
@@ -33,12 +50,90 @@ public class LocationManager {
 	private java.util.Map<String, Location> map;
 
 	/**
-	 * Simple constructor.
+	 * Basic constructor designed to provide an empty list of locations,
+	 * and gain access to our systems location services.
 	 *
+	 * @throws	NullPointerException	In the event {@code Context.getSystemService(Context.LOCATION_SERVICE)}
+	 *									fails to provide a non
+	 *									{@code null} reference to the
+	 *									location manager.
 	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
 	 */
-	public LocationManager() {
+	public LocationManager(android.content.Context context)
+			throws NullPointerException {
+		NullPointerException nullManager;
+
 		map = new java.util.HashMap<String, Location>();
+
+		locationManager = (android.location.LocationManager)
+				context.getSystemService(
+						android.content.Context.LOCATION_SERVICE);
+		if (locationManager != null) {
+			locationManager.requestLocationUpdates(
+					android.location.LocationManager.GPS_PROVIDER, 0, 0, this);
+
+			Log.v(TAG, "We've successfully requested location updates from " +
+					"the system.");
+		} else {
+			nullManager = new NullPointerException(
+					"The call `Context.getSystemService(Context.LOCATION_SERVICE)` returned `null`.");
+			Log.e(TAG, "Our attempts at gaining a reference to the location " +
+					"system service have failed.", nullManager);
+
+			throw nullManager;
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @param	location	{@inheritDoc}
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @see		#lastKnownLocation
+	 */
+	@Override
+	public void onLocationChanged(android.location.Location location) {
+		lastKnownLocation = new Location(
+				location.getLatitude(), location.getLongitude());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @param	provider	{@inheritDoc}
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	public void onProviderDisabled(String provider) {
+		if (provider == android.location.LocationManager.GPS_PROVIDER) {
+			Log.d(TAG, "The user has disabled the service provide we're " +
+					"using for GPS location data.");
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @param	provider	{@inheritDoc}
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	public void onProviderEnabled(String provider) {
+		if (provider == android.location.LocationManager.GPS_PROVIDER) {
+			Log.v(TAG, "We've got access to the system's GPS provider again.");
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @param	provider	{@inheritDoc}
+	 * @param	status		{@inheritDoc}
+	 * @param	extras		{@inheritDoc}
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	public void onStatusChanged(String provider, int status, android.os.Bundle extras) {
 	}
 
 	/**
@@ -62,17 +157,15 @@ public class LocationManager {
 	}
 
 	/**
-	 * Get the current -- or at best, the most recent -- location of the
+	 * Get the current -- or at worst, the most recent -- location of the
 	 * device.
 	 *
 	 * @return	A {@code Location} object containing the current
 	 *			location.
-	 * @throws	UnsupportedOperationException	In all cases. This
-	 *			method is yet to be implemented.
 	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
 	 */
 	public Location getCurrentLocation() {
-		throw new UnsupportedOperationException("The method `LocationManager.getCurrentLocation()` is yet to be implemented.");
+		return lastKnownLocation;
 	}
 
 	/**
