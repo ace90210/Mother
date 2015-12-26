@@ -11,7 +11,7 @@ import android.content.SharedPreferences;
  *
  * @author	Unascribed
  * @version	v1.0.0
- * @since	!_TODO__ [Alex Melbourne <a.melbourne@uea.ac.uk>] : Update this label before new release.
+ * @since	v1.0.0-alpha+20151204
  */
 public interface FileIO {
 	/**
@@ -22,6 +22,7 @@ public interface FileIO {
 	 *					returned.
 	 * @return	A stream representation of the file requested.
 	 * @throws	java.io.IOException	In the event I/O fails.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	InputStream readFile(String file) throws IOException;
 
@@ -33,6 +34,7 @@ public interface FileIO {
 	 *					returned.
 	 * @return	A stream representation of the file requested.
 	 * @throws	java.io.IOException	In the event I/O fails.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	OutputStream writeFile(String file) throws IOException;
     
@@ -44,6 +46,7 @@ public interface FileIO {
 	 *					returned.
 	 * @return	A stream representation of the file requested.
 	 * @throws	java.io.IOException	In the event I/O fails.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	InputStream readAsset(String file) throws IOException;
     
@@ -51,6 +54,7 @@ public interface FileIO {
 	 * Gain access to the shared preferences of the user.
 	 *
 	 * @return	An access to the {@code SharedPreferences} object.
+	 * @since	v1.0.0-alpha+20151204
 	 */
 	SharedPreferences getSharedPref();
 }
