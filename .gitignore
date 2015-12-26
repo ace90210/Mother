@@ -1,0 +1,7 @@
+mother/build/
+.idea/
+.gradle/
+build/
+Mother.iml
+local.properties
+mother/mother.iml
