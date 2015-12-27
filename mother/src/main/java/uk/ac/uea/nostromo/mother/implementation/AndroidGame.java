@@ -1,25 +1,10 @@
 package uk.ac.uea.nostromo.mother.implementation;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Display;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TableLayout;
-import android.widget.TextView;
-
-import com.example.barry.testmultiactivityswitcher.R;
-
 import uk.ac.uea.nostromo.mother.Audio;
 import uk.ac.uea.nostromo.mother.FileIO;
 import uk.ac.uea.nostromo.mother.Game;
@@ -38,7 +23,9 @@ import uk.ac.uea.nostromo.mother.Screen;
  * @see WakeLock
  * @since	v1.0.0-alpha+20151204
  */
-public abstract class AndroidGame extends AppCompatActivity implements Game {
+public abstract class AndroidGame extends Activity implements Game {
+    int mainTableLayout;
+
 	/**
 	 * @since	v1.0.0-alpha+20151204
 	 */
@@ -77,10 +64,10 @@ public abstract class AndroidGame extends AppCompatActivity implements Game {
 	 * @param	savedInstanceState	{@inheritDoc}
 	 * @since	v1.0.0-alpha+20151204
 	 */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState, int mainActivity, int mainTableLayout) {
         super.onCreate(savedInstanceState);
 
+        this.mainTableLayout = mainTableLayout;
         fileIO = new AndroidFileIO(this);
         audio = new AndroidAudio(this);
         graphics = new Graphics(this);
@@ -88,9 +75,9 @@ public abstract class AndroidGame extends AppCompatActivity implements Game {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        setContentView(R.layout.activity_main);
+        setContentView(mainActivity);
 
-        rootLayout = (TableLayout) findViewById(R.id.table_layout);
+        rootLayout = (TableLayout) findViewById(mainTableLayout);
 
         TableLayout screenLayout = screen.getTableLayout();
 
@@ -169,7 +156,7 @@ public abstract class AndroidGame extends AppCompatActivity implements Game {
             throw new IllegalArgumentException("Screen must not be null");
 
         rootLayout.removeAllViews();
-        rootLayout = (TableLayout) findViewById(R.id.table_layout);
+        rootLayout = (TableLayout) findViewById(mainTableLayout);
 
         rootLayout.addView(screen.getTableLayout());
 
