@@ -13,7 +13,7 @@ package uk.ac.uea.nostromo.mother;
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
  * @version	v1.0.0
- * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+ * @since	v1.0.0-alpha+20151227
  */
 public class LocationLabelPair {
 	/**
@@ -22,7 +22,7 @@ public class LocationLabelPair {
 	 * @param	label	The new name for this location.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *			method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void setLabel(String label) {
 		throw new UnsupportedOperationException("The method `LocationLabelPair.setLabel(String)` is yet to be implemented.");
@@ -34,7 +34,7 @@ public class LocationLabelPair {
 	 * @param	location	The new GPS location for this pairing.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *			method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void setLocation(Location location) {
 		throw new UnsupportedOperationException("The method `LocationLabelPair.setLocation(Location)` is yet to be implemented.");
@@ -46,7 +46,7 @@ public class LocationLabelPair {
 	 * @return	The label portion of this pairing.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *			method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public String getLabel() {
 		throw new UnsupportedOperationException("The method `LocationLabelPair.getLabel()` is yet to be implemented.");
@@ -58,7 +58,7 @@ public class LocationLabelPair {
 	 * @return	The location portion of this pairing.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *			method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public Location getLocation() {
 		throw new UnsupportedOperationException("The method `LocationLabelPair.getLocation()` is yet to be implemented.");

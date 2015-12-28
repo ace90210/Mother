@@ -11,11 +11,13 @@ import uk.ac.uea.nostromo.mother.*;
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
  * @version	v1.0.0
- * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+ * @since	v1.0.0-alpha+20151227
  */
 public class AndroidDataIO implements uk.ac.uea.nostromo.mother.DataIO {
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	@Override
 	public java.io.InputStream readFile(String file) throws java.io.IOException {
@@ -24,6 +26,8 @@ public class AndroidDataIO implements uk.ac.uea.nostromo.mother.DataIO {
 
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	@Override
 	public java.io.OutputStream writeFile(String file) throws java.io.IOException {
@@ -32,6 +36,8 @@ public class AndroidDataIO implements uk.ac.uea.nostromo.mother.DataIO {
 
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	@Override
 	public java.io.InputStream readAsset(String file) throws java.io.IOException {
@@ -40,6 +46,8 @@ public class AndroidDataIO implements uk.ac.uea.nostromo.mother.DataIO {
 
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	@Override
 	public <T> void writeDataList(DataIOStrategy<T> writer, DataObject data) {
@@ -48,6 +56,8 @@ public class AndroidDataIO implements uk.ac.uea.nostromo.mother.DataIO {
 
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	@Override
 	public <T> DataObject readDataList(DataIOStrategy<T> reader) {
@@ -56,6 +66,8 @@ public class AndroidDataIO implements uk.ac.uea.nostromo.mother.DataIO {
     
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	@Override
 	public android.content.SharedPreferences getSharedPref() {

@@ -10,7 +10,7 @@ package uk.ac.uea.nostromo.mother;
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
  * @version	v1.0.0
- * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+ * @since	v1.0.0-alpha+20151227
  */
 public class LocationManager {
 	/**
@@ -21,7 +21,7 @@ public class LocationManager {
 	 *			name.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *			method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public Location getLocation(String label) {
 		throw new UnsupportedOperationException("The method `LocationManager.getLocation(String)` is yet to be implemented.");
@@ -35,7 +35,7 @@ public class LocationManager {
 	 *			location.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *			method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public Location getCurrentLocation() {
 		throw new UnsupportedOperationException("The method `LocationManager.getCurrentLocation()` is yet to be implemented.");
@@ -54,7 +54,7 @@ public class LocationManager {
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *			method is yet to be implemented.
 	 * @see		#setLocation(String, Location)
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void addLocation(String label) {
 		throw new UnsupportedOperationException("The method `LocationManager.addLocation(String)` is yet to be implemented.");
@@ -67,7 +67,7 @@ public class LocationManager {
 	 *					internally.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *			method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void removeLocation(String label) {
 		throw new UnsupportedOperationException("The method `LocationManager.removeLocation(String)` is yet to be implemented.");
@@ -85,7 +85,7 @@ public class LocationManager {
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *			method is yet to be implemented.
 	 * @see		#addLocation(String)
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void setLocation(String label, Location location) {
 		throw new UnsupportedOperationException("The method `LocationManager.setLocation(String, Location)` is yet to be implemented.");
