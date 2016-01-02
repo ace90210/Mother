@@ -61,7 +61,7 @@ public class AndroidDataIO implements uk.ac.uea.nostromo.mother.DataIO {
 	 */
 	@Override
 	public <T> DataObject readDataList(DataIOStrategy<T> reader) {
-		throw new UnsupportedOperationException("The method `AndroidDataIO.readDataList(DataIOStrategy<T>)` is yet to be implemented.");
+		return reader.readData();
 	}
     
 	/**
