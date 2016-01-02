@@ -17,7 +17,10 @@ import uk.ac.uea.nostromo.mother.FileIO;
 
 /**
  * Handles to loading of assets and general files for the game.
+ *
+ * @since	v1.0.0-alpha+20151204
  */
+@Deprecated
 public class AndroidFileIO implements FileIO {
 	/**
 	 * @since	v1.0.0-alpha+20151204
@@ -40,6 +43,7 @@ public class AndroidFileIO implements FileIO {
 	 * @param context The current Android context.
 	 * @since	v1.0.0-alpha+20151204
 	 */
+	@Deprecated
     public AndroidFileIO(Context context) {
         this.context = context;
         this.assets = context.getAssets();
@@ -58,6 +62,7 @@ public class AndroidFileIO implements FileIO {
 	 * @throws IOException
 	 * @since	v1.0.0-alpha+20151204
 	 */
+	@Deprecated
     @Override
     public InputStream readAsset(String file) throws IOException {
         return assets.open(file);
@@ -71,6 +76,7 @@ public class AndroidFileIO implements FileIO {
 	 * @throws IOException
 	 * @since	v1.0.0-alpha+20151204
 	 */
+	@Deprecated
     @Override
     public InputStream readFile(String file) throws IOException {
         return new FileInputStream(externalStoragePath + file);
@@ -86,6 +92,7 @@ public class AndroidFileIO implements FileIO {
 	 * @throws IOException
 	 * @since	v1.0.0-alpha+20151204
 	 */
+	@Deprecated
     @Override
     public OutputStream writeFile(String file) throws IOException {
         return new FileOutputStream(externalStoragePath + file);
@@ -96,6 +103,7 @@ public class AndroidFileIO implements FileIO {
 	 * @return A SharedPreferences object for the current contexts shared preferences.
 	 * @since	v1.0.0-alpha+20151204
 	 */
+	@Deprecated
     public SharedPreferences getSharedPref() {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
