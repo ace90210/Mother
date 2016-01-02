@@ -10,7 +10,7 @@ package uk.ac.uea.nostromo.mother;
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
  * @version	v1.0.0
- * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+ * @since	v1.0.0-alpha+20151227
  */
 public interface DataIO {
 	/**
@@ -21,7 +21,7 @@ public interface DataIO {
 	 *					returned.
 	 * @return	A stream representation of the file requested.
 	 * @throws	java.io.IOException	In the event I/O fails.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	java.io.InputStream readFile(String file) throws java.io.IOException;
 
@@ -33,7 +33,7 @@ public interface DataIO {
 	 *					returned.
 	 * @return	A stream representation of the file requested.
 	 * @throws	java.io.IOException	In the event I/O fails.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	java.io.OutputStream writeFile(String file) throws java.io.IOException;
     
@@ -45,7 +45,7 @@ public interface DataIO {
 	 *					returned.
 	 * @return	A stream representation of the file requested.
 	 * @throws	java.io.IOException	In the event I/O fails.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	java.io.InputStream readAsset(String file) throws java.io.IOException;
 
@@ -54,7 +54,7 @@ public interface DataIO {
 	 *
 	 * @param	writer	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 * @param	data	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	<T> void writeDataList(DataIOStrategy<T> writer, DataObject data);
 
@@ -63,7 +63,7 @@ public interface DataIO {
 	 *
 	 * @param	reader	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 * @return	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	<T> DataObject readDataList(DataIOStrategy<T> reader);
     
@@ -71,7 +71,7 @@ public interface DataIO {
 	 * !_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 *
 	 * @return	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	android.content.SharedPreferences getSharedPref();
 }

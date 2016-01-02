@@ -10,20 +10,20 @@ package uk.ac.uea.nostromo.mother;
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
  * @version	v1.0.0
- * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+ * @since	v1.0.0-alpha+20151227
  */
 public class DataObject {
 	/**
 	 * A list of all of the children of this piece of data.
 	 *
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	private java.util.List<DataObject> children;
 
 	/**
 	 * The actual data stored in this encapsulation.
 	 *
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	private Object data;
 
@@ -33,7 +33,7 @@ public class DataObject {
 	 * @param	data	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void setData(Object data) {
 		throw new UnsupportedOperationException("The method `DataObject.setData(Object)` is yet to be implemented.");
@@ -45,7 +45,7 @@ public class DataObject {
 	 * @param	child	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void addChild(DataObject child) {
 		throw new UnsupportedOperationException("The method `DataObject.addChild(DataObject)` is yet to be implemented.");
@@ -57,7 +57,7 @@ public class DataObject {
 	 * @param	child	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void removeChild(DataObject child) {
 		throw new UnsupportedOperationException("The method `DataObject.removeChild(DataObject)` is yet to be implemented.");
@@ -69,7 +69,7 @@ public class DataObject {
 	 * @return	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public java.util.List<DataObject> getChildren() {
 		throw new UnsupportedOperationException("The method `DataObject.getChildren()` is yet to be implemented.");
@@ -81,7 +81,7 @@ public class DataObject {
 	 * @return	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public Boolean hasNext() {
 		throw new UnsupportedOperationException("The method `DataObject.hasNext()` is yet to be implemented.");
@@ -93,7 +93,7 @@ public class DataObject {
 	 * @return	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public Object nextData() {
 		throw new UnsupportedOperationException("The method `DataObject.nextData()` is yet to be implemented.");
@@ -104,7 +104,7 @@ public class DataObject {
 	 *
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void resetIterator() {
 		throw new UnsupportedOperationException("The method `DataObject.resetIterator()` is yet to be implemented.");
@@ -122,7 +122,7 @@ public class DataObject {
 	 *			child data.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public DataObject search(String term, java.util.Comparator comparator) {
 		throw new UnsupportedOperationException("The method `DataObject.search(String, java.util.Comparator)` is yet to be implemented.");

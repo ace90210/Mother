@@ -8,8 +8,8 @@ package uk.ac.uea.nostromo.mother;
  * Store information about a GPS location in a transferable format.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v1.1.0
- * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+ * @version	v1.0.0
+ * @since	v1.0.0-alpha+20151227
  */
 public class Location {
 	/**
@@ -50,7 +50,7 @@ public class Location {
 	 *
 	 * @return	A {@code Double} object representing the longitude of
 	 *			this location in <strong>degrees</strong>.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public Double getLongitude() {
 		return longitude;
@@ -61,7 +61,7 @@ public class Location {
 	 *
 	 * @return	A {@code Double} object representing the longitude of
 	 *			this location in <b>degrees</b>.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public Double getLatitude() {
 		return latitude;

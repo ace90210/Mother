@@ -13,7 +13,7 @@ package uk.ac.uea.nostromo.mother;
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
  * @version	v1.1.0
- * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+ * @since	v1.0.0-alpha+20151227
  */
 public class LocationLabelPair {
 	/**
@@ -34,7 +34,7 @@ public class LocationLabelPair {
 	 * location.
 	 *
 	 * @param	label	The new name for this location.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	@since	v1.0.0-alpha+20151227
 	 */
 	public void setLabel(String label) {
 		locationLabel = label;
@@ -44,7 +44,7 @@ public class LocationLabelPair {
 	 * Change the stored location for this pairing.
 	 *
 	 * @param	location	The new GPS location for this pairing.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	@since	v1.0.0-alpha+20151227
 	 */
 	public void setLocation(Location location) {
 		coordinates = location;
@@ -54,7 +54,7 @@ public class LocationLabelPair {
 	 * Returns the value representing the longitude of this location.
 	 *
 	 * @return	The label portion of this pairing.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	@since	v1.0.0-alpha+20151227
 	 */
 	public String getLabel() {
 		return locationLabel;
@@ -64,7 +64,7 @@ public class LocationLabelPair {
 	 * Returns the value representing the longitude of this location.
 	 *
 	 * @return	The location portion of this pairing.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	@since	v1.0.0-alpha+20151227
 	 */
 	public Location getLocation() {
 		return coordinates;

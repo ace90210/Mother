@@ -17,6 +17,8 @@ import uk.ac.uea.nostromo.mother.FileIO;
 
 /**
  * Handles to loading of assets and general files for the game.
+ *
+ * @since	v1.0.0-alpha+20151204
  */
 @Deprecated
 public class AndroidFileIO implements FileIO {

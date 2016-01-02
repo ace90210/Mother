@@ -12,7 +12,7 @@ import android.util.Log;
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
  * @version	v1.2.0
- * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+ * @since	v1.0.0-alpha+20151227
  */
 public class LocationManager implements android.location.LocationListener {
 	/**
@@ -142,7 +142,7 @@ public class LocationManager implements android.location.LocationListener {
 	 * @param	label	The name of the {@code Location} object desired.
 	 * @return	The location, if one exists, matching the presented
 	 *			name.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public Location getLocation(String label) {
 		Location location;
@@ -162,7 +162,7 @@ public class LocationManager implements android.location.LocationListener {
 	 *
 	 * @return	A {@code Location} object containing the current
 	 *			location.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public Location getCurrentLocation() {
 		return lastKnownLocation;
@@ -179,7 +179,7 @@ public class LocationManager implements android.location.LocationListener {
 	 * @param	label	The name that should be assigned to a new
 	 *					pairing.
 	 * @see		#setLocation(String, Location)
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void addLocation(String label) {
 		Location location;
@@ -199,7 +199,7 @@ public class LocationManager implements android.location.LocationListener {
 	 *
 	 * @param	label 	The name of the location that should be removed
 	 *					internally.
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void removeLocation(String label) {
 		Location location;
@@ -227,7 +227,7 @@ public class LocationManager implements android.location.LocationListener {
 	 * @param	label		The label of the location that is to be set.
 	 * @param	location	The new location.
 	 * @see		#addLocation(String)
-	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @since	v1.0.0-alpha+20151227
 	 */
 	public void setLocation(String label, Location location) {
 		Location previous;
