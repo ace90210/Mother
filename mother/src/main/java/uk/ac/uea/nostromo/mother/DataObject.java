@@ -5,6 +5,7 @@
 package uk.ac.uea.nostromo.mother;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  * @version	v1.0.0
  * @since    v1.0.0-alpha+20151227
  */
-public class DataObject<T> {
+public class DataObject<T> implements Iterable<DataObject<T>>, Iterator<DataObject<T>>  {
 
 	/**
 	 * The current index of the child
@@ -30,6 +31,10 @@ public class DataObject<T> {
 	 * @since    v1.0.0-alpha+20151227
 	 */
 	private java.util.List<DataObject> children;
+
+	public T getData() {
+		return data;
+	}
 
 	/**
 	 * The actual data stored in this encapsulation.
@@ -126,6 +131,13 @@ public class DataObject<T> {
 			index = children.size() - 1;
 	}
 
+	@Override
+	public void remove() {
+		children.remove(index);
+		if(index >= children.size())
+			index = children.size() - 1;
+	}
+
 	/**
 	 * Returns a list of all the child {DataObjects}
 	 *
@@ -146,8 +158,9 @@ public class DataObject<T> {
 	 *											method is yet to be implemented.
 	 * @since    v1.0.0-alpha+20151227
 	 */
-	public Boolean hasNext() {
-		return index + 1 < children.size();
+	@Override
+	public boolean hasNext() {
+			return index + 1 < children.size();
 	}
 
 	/**
@@ -158,7 +171,8 @@ public class DataObject<T> {
 	 *											method is yet to be implemented.
 	 * @since    v1.0.0-alpha+20151227
 	 */
-	public DataObject nextData() {
+	@Override
+	public DataObject next() {
 		index++;
 
 		if(index >= children.size())
@@ -181,8 +195,6 @@ public class DataObject<T> {
 	 * Search through this {@code DataObject} in an attempt to find a
 	 * term that matches {@code term}.
 	 *
-	 * @param	term		The pattern to be used in finding matches in
-	 *						this {@code DataObject}.
 	 * @param	comparator	The comparison function to use when
 	 *						comparing items.
 	 * @return	A {@code DataObject} containing the matched term an its
@@ -191,7 +203,24 @@ public class DataObject<T> {
 	 *											method is yet to be implemented.
 	 * @since	v1.0.0-alpha+20151227
 	 */
-	public DataObject search(String term, java.util.Comparator comparator) {
-		throw new UnsupportedOperationException("The method `DataObject.search(String, java.util.Comparator)` is yet to be implemented.");
+	public DataObject search(Comparable<T> comparator) {
+
+		DataObject output = new DataObject();
+		if(comparator.compareTo(data) == 1){
+			output.addData(data);
+		}
+
+		for (int i = 0; i < children.size(); i++) {
+			DataObject<T> result = children.get(i).search(comparator);
+			if(result != null)
+				output.addData(result);
+		}
+
+		return output.getData() != null ? output : null;
+	}
+
+	@Override
+	public Iterator<DataObject<T>> iterator() {
+		return this;
 	}
 }

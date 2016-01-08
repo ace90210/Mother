@@ -50,9 +50,7 @@ public class XMLDatastrategy extends DataIOStrategy<DataObject> {
 
     @Override
     public DataObject readData() {
-        DataObject<List<MapRow>> dataObject = new DataObject<List<MapRow>>();
-        List<MapRow> mapData = new ArrayList<MapRow>();
-
+        DataObject<MapRow> dataObject = new DataObject<MapRow>();
         MapRow curMapRow = null;
 
         String curText = "";
@@ -83,7 +81,7 @@ public class XMLDatastrategy extends DataIOStrategy<DataObject> {
                     break;
                     case XmlPullParser.END_TAG: {
                         if(tag.equalsIgnoreCase("dataRow")){
-                            mapData.add(curMapRow);
+                            dataObject.addData(curMapRow);
                         }
                         else if(tag.equalsIgnoreCase("type")){
                             curMapRow.setType(curText);
@@ -134,7 +132,7 @@ public class XMLDatastrategy extends DataIOStrategy<DataObject> {
             e.printStackTrace();
         }
 
-        return new DataObject(mapData);
+        return dataObject;
     }
 
     public class MapRow {
@@ -236,6 +234,11 @@ public class XMLDatastrategy extends DataIOStrategy<DataObject> {
 
         public void setLink(String link) {
             this.link = link;
+        }
+
+        @Override
+        public String toString(){
+            return name;
         }
     }
 }

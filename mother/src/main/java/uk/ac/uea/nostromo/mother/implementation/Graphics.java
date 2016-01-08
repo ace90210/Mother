@@ -134,7 +134,7 @@ public class Graphics {
         return tr;
     }
 
-    public TableRow newOptionSpinner(String label, List<String> spinnerLabels, int dropDownLayoutResource, AdapterView.OnItemSelectedListener onItemSelectedListener){
+    public <T> TableRow newOptionSpinner(String label, List<T> spinnerLabels, int dropDownLayoutResource, AdapterView.OnItemSelectedListener onItemSelectedListener){
         final float scale = context.getResources().getDisplayMetrics().density;
         int dpHeight = (int) (50 * scale + 0.5f);
         int dpWidth = (int) (100 * scale + 0.5f);
@@ -172,7 +172,7 @@ public class Graphics {
         }
 
         ArrayAdapter<String> spinnerArrayAdapter; //selected item will look like a spinner set from XML
-        spinnerArrayAdapter = new ArrayAdapter<String>(context, dropDownLayoutResource, spinnerLabels);
+        spinnerArrayAdapter = new ArrayAdapter(context, dropDownLayoutResource, spinnerLabels);
         spinnerArrayAdapter.setDropDownViewResource(dropDownLayoutResource);
 
         sp.setAdapter(spinnerArrayAdapter);
