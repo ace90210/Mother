@@ -69,8 +69,10 @@ public class LocationManager implements android.location.LocationListener {
 				context.getSystemService(
 						android.content.Context.LOCATION_SERVICE);
 		if (locationManager != null) {
-			locationManager.requestLocationUpdates(
-					android.location.LocationManager.GPS_PROVIDER, 0, 0, this);
+			locationManager.requestLocationUpdates(android.location.LocationManager.GPS_PROVIDER, 0, 0, this);
+
+			android.location.Location l = locationManager.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER);
+			lastKnownLocation = new Location(l.getLatitude(), l.getLongitude());
 
 			Log.v(TAG, "We've successfully requested location updates from " +
 					"the system.");
