@@ -25,7 +25,12 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 
 import java.util.List;
 
@@ -102,14 +107,6 @@ public class Graphics {
         ll.setLayoutParams(lp);
 
         return ll;
-    }
-
-    public MapFragment newMap(Activity act, int containerID){
-        MapFragment mMapFragment = MapFragment.newInstance();
-        FragmentTransaction fragmentTransaction = act.getFragmentManager().beginTransaction();
-        fragmentTransaction.add(containerID, mMapFragment);
-        fragmentTransaction.commit();
-        return mMapFragment;
     }
 
     public TableRow newButton(String text, Context c, View.OnClickListener onClickListener){
@@ -241,5 +238,57 @@ public class Graphics {
         tr.addView(et);
 
         return tr;
+    }
+
+    public MyGoogleMap newMap(Activity act, int containerID, OnMapReadyCallback callback){
+        return new MyGoogleMap(act, callback, containerID);
+    }
+
+    public class MyGoogleMap implements OnMapReadyCallback {
+        Activity activity;
+        OnMapReadyCallback callback;
+
+        GoogleMap googleMap;
+        MapFragment mapFragment;
+
+        public MyGoogleMap(Activity activity, OnMapReadyCallback callback, int containerID) {
+            this.activity = activity;
+            this.callback = callback;
+            mapFragment = MapFragment.newInstance();
+
+            FragmentTransaction fragmentTransaction = activity.getFragmentManager().beginTransaction();
+            fragmentTransaction.add(containerID, mapFragment);
+            fragmentTransaction.commit();
+
+            mapFragment.getMapAsync(this);
+
+        }
+
+        public GoogleMap getGoogleMap() {
+            return googleMap;
+        }
+
+        public MapFragment getMapFragment() {
+            return mapFragment;
+        }
+
+        @Override
+        public void onMapReady(GoogleMap googleMap) {
+            this.googleMap = googleMap;
+
+            LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
+            boundsBuilder.include(new LatLng(52.619552 ,1.251090));
+            boundsBuilder.include(new LatLng(52.627471, 1.230447));
+
+            // pan to see all markers on map:
+            LatLngBounds UEA_MAP_BOUNDS = boundsBuilder.build();
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(UEA_MAP_BOUNDS, 3));
+
+            googleMap.setMyLocationEnabled(true);
+
+            if(callback != null){
+                callback.onMapReady(googleMap);
+            }
+        }
     }
 }

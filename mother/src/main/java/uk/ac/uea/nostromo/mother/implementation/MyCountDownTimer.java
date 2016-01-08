@@ -14,6 +14,7 @@ public abstract class MyCountDownTimer implements IMyCountDownTimer {
     }
 
     public void resetTimer(long millisInFuture){
+        mTimer.cancel();
         mTimer = new MyInnerTimerCountDownTimer(millisInFuture, mTimer.getInterval(), this);
         mTimer.start();
     }
