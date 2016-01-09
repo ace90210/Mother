@@ -6,6 +6,7 @@ import android.os.PowerManager.WakeLock;
 import android.view.WindowManager;
 import android.widget.TableLayout;
 import uk.ac.uea.nostromo.mother.Audio;
+import uk.ac.uea.nostromo.mother.DataIO;
 import uk.ac.uea.nostromo.mother.FileIO;
 import uk.ac.uea.nostromo.mother.Game;
 import uk.ac.uea.nostromo.mother.Screen;
@@ -41,6 +42,10 @@ public abstract class AndroidGame extends Activity implements Game {
 	 */
     FileIO fileIO;
 
+    /**
+     * @since	v1.0.0-alpha+20151204
+     */
+    DataIO dataIO;
 	/**
 	 * @since	v1.0.0-alpha+20151204
 	 */
@@ -56,7 +61,7 @@ public abstract class AndroidGame extends Activity implements Game {
 	 */
     protected TableLayout rootLayout;
 
-	/**
+    /**
 	 * Handles the creation of the main game screen.
 	 * Instantiates the main renderer, graphics object (for handling basic graphical operations such as  drawing to the canvas),
 	 * the file input and output handler, audio handler, user input handler and the main screen.
@@ -69,6 +74,7 @@ public abstract class AndroidGame extends Activity implements Game {
 
         this.mainTableLayout = mainTableLayout;
         fileIO = new AndroidFileIO(this);
+        dataIO = new AndroidDataIO();
         audio = new AndroidAudio(this);
         graphics = new Graphics(this);
         screen = getInitScreen();
@@ -123,6 +129,16 @@ public abstract class AndroidGame extends Activity implements Game {
     @Override
     public FileIO getFileIO() {
         return fileIO;
+    }
+
+    /**
+     * Get handle to the current data input/output handler.
+     * @return An DataIO object for the games data input/output handler.
+     * @since	!_TODO__ {Barry Wright}
+     */
+    @Override
+    public DataIO getDataIO() {
+        return dataIO;
     }
 
 	/**

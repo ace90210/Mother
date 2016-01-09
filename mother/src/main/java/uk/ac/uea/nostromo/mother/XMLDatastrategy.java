@@ -13,6 +13,8 @@ package uk.ac.uea.nostromo.mother;
 //import org.apache.poi.util.IOUtils;
 //import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -36,11 +38,11 @@ import java.util.List;
  */
 public class XMLDatastrategy extends DataIOStrategy<DataObject> {
 
-    private InputStream inputStream;
+    private Context context;
 
-    public XMLDatastrategy(String location, InputStream inputStream) {
+    public XMLDatastrategy(String location, Context context) {
         this.location = location;
-        this.inputStream = inputStream;
+        this.context = context;
     }
 
     @Override
@@ -56,6 +58,14 @@ public class XMLDatastrategy extends DataIOStrategy<DataObject> {
         String curText = "";
 
         try{
+            AssetManager am = context.getAssets();
+            InputStream inputStream = null;
+            try {
+                inputStream = am.open(location);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             XmlPullParser xmlpp = factory.newPullParser();
 
