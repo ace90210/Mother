@@ -1,5 +1,5 @@
 /*
- * LocationManager.java	v1.2.0	2015-12-24
+ * LocationManager.java	v1.2.1	2015-01-10
  */
 
 package uk.ac.uea.nostromo.mother;
@@ -11,7 +11,7 @@ import android.util.Log;
  * <em>user-friendly</em> name that can be used to retrieve it.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v1.2.0
+ * @version	v1.2.1
  * @since	v1.0.0-alpha+20151227
  */
 public class LocationManager implements android.location.LocationListener {
@@ -58,10 +58,12 @@ public class LocationManager implements android.location.LocationListener {
 	 *									{@code null} reference to the
 	 *									location manager.
 	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @see		android.content.pm.PackageManager#checkPermission(String, String)
 	 */
 	public LocationManager(android.content.Context context)
 			throws NullPointerException {
 		NullPointerException nullManager;
+		android.location.Location systemLastKnownLocation;
 
 		map = new java.util.HashMap<String, Location>();
 
@@ -69,13 +71,31 @@ public class LocationManager implements android.location.LocationListener {
 				context.getSystemService(
 						android.content.Context.LOCATION_SERVICE);
 		if (locationManager != null) {
-			locationManager.requestLocationUpdates(android.location.LocationManager.GPS_PROVIDER, 0, 0, this);
+			/* We avoid the use of `checkPermission(String, String)` because of
+			 * its requirement to be called via a context; regardless of the
+			 * fact we have one passed in.
+			 *
+			 * The use of `checkSelfPermission(Context, String)` is avoided
+			 * because a dependency on the Android support library and
+			 * Marshmellow and above.
+			 */
+			try {
+				locationManager.requestLocationUpdates(
+						android.location.LocationManager.GPS_PROVIDER, 0, 0,
+						this);
 
-			android.location.Location l = locationManager.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER);
-			lastKnownLocation = new Location(l.getLatitude(), l.getLongitude());
+				systemLastKnownLocation = locationManager.getLastKnownLocation(
+						android.location.LocationManager.GPS_PROVIDER);
+				lastKnownLocation = new Location(
+						systemLastKnownLocation.getLatitude(),
+						systemLastKnownLocation.getLongitude());
 
-			Log.v(TAG, "We've successfully requested location updates from " +
-					"the system.");
+				Log.v(TAG, "We've successfully requested location updates from " +
+						"the system.");
+			} catch (SecurityException securityException) {
+				Log.e(TAG, "The system, on behalf of the user, has denied us " +
+						"access to the location manager).", securityException);
+			}
 		} else {
 			nullManager = new NullPointerException(
 					"The call `Context.getSystemService(Context.LOCATION_SERVICE)` returned `null`.");
