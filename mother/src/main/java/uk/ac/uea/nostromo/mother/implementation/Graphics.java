@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,6 +38,8 @@ import java.util.List;
  * Handles the drawing to the Canvas(being displayed on android screen) with multiple elements
  * such as text, shapes and images.
  *
+ * @author	Barry Wright {@literal <barry.wright@uea.ac.uk>}
+ * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
  * @since v1.0.0-alpha+20151204
  */
 public class Graphics {
@@ -326,7 +329,12 @@ public class Graphics {
             LatLngBounds UEA_MAP_BOUNDS = boundsBuilder.build();
             googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(UEA_MAP_BOUNDS, 3));
 
-            googleMap.setMyLocationEnabled(true);
+			try {
+				googleMap.setMyLocationEnabled(true);
+			} catch (SecurityException securityException) {
+				Log.e(TAG, "We do not have access to our user's location to " +
+						"display it on our map.", securityException);
+			}
 
             if(callback != null){
                 callback.onMapReady(googleMap);
