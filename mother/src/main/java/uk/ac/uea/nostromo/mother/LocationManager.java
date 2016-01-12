@@ -2,9 +2,9 @@
  * LocationManager.java	v1.2.1	2015-01-10
  */
 
-package uk.ac.uea.nostromo.mother;
+		package uk.ac.uea.nostromo.mother;
 
-import android.util.Log;
+		import android.util.Log;
 
 /**
  * Manage a mapping of {@code Location} objects alongside a
@@ -62,7 +62,7 @@ public class LocationManager implements android.location.LocationListener {
 	 */
 	public LocationManager(android.content.Context context)
 			throws NullPointerException {
-		NullPointerException nullManager;
+		NullPointerException nullManager, nullLocation;
 		android.location.Location systemLastKnownLocation;
 
 		map = new java.util.HashMap<String, Location>();
@@ -86,9 +86,20 @@ public class LocationManager implements android.location.LocationListener {
 
 				systemLastKnownLocation = locationManager.getLastKnownLocation(
 						android.location.LocationManager.GPS_PROVIDER);
-				lastKnownLocation = new Location(
-						systemLastKnownLocation.getLatitude(),
-						systemLastKnownLocation.getLongitude());
+
+				if(systemLastKnownLocation != null) {
+					lastKnownLocation = new Location(
+							systemLastKnownLocation.getLatitude(),
+							systemLastKnownLocation.getLongitude());
+				}
+				else {
+					nullLocation = new NullPointerException(
+							"The call `Context.getLastKnownLocation(Context.LOCATION_SERVICE)` returned `null`.");
+					Log.e(TAG, "Our attempts at gaining a reference to the location " +
+							" have failed.", nullLocation);
+
+					throw nullLocation;
+				}
 
 				Log.v(TAG, "We've successfully requested location updates from " +
 						"the system.");
