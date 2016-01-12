@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="uk.ac.uea.nostromo.mother" android:versionCode="@string/version_code" android:versionName="@string/version_name">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="uk.ac.uea.nostromo.mother" android:versionCode="3" android:versionName="v1.0.0">
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-sdk
         android:minSdkVersion="19"
