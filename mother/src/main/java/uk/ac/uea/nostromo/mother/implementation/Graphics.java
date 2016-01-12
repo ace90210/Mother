@@ -5,11 +5,18 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -25,10 +32,12 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
@@ -292,6 +301,7 @@ public class Graphics {
     public class MyGoogleMap implements OnMapReadyCallback {
         Activity activity;
         OnMapReadyCallback callback;
+        LatLng targetLocation;
 
         GoogleMap googleMap;
         MapFragment mapFragment;
@@ -306,7 +316,6 @@ public class Graphics {
             fragmentTransaction.commit();
 
             mapFragment.getMapAsync(this);
-
         }
 
         public GoogleMap getGoogleMap() {
@@ -318,8 +327,8 @@ public class Graphics {
         }
 
         @Override
-        public void onMapReady(GoogleMap googleMap) {
-            this.googleMap = googleMap;
+        public void onMapReady(GoogleMap gMap) {
+            this.googleMap = gMap;
 
             LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
             boundsBuilder.include(new LatLng(52.619552, 1.251090));
@@ -331,6 +340,39 @@ public class Graphics {
 
 			try {
 				googleMap.setMyLocationEnabled(true);
+
+                googleMap.getUiSettings().setCompassEnabled(true);
+                googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+                googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+                    @Override
+                    public void onMyLocationChange(Location location) {
+                        double cLong = location.getLongitude();
+                        double cLat = location.getLatitude();
+
+                        double tLong = targetLocation != null ? targetLocation.longitude : 1;
+                        double tLat = targetLocation != null ? targetLocation.latitude : 1;
+
+                        //calc bearing
+                        double dLon = (tLong-cLong);
+                        double y = Math.sin(dLon) * Math.cos(tLat);
+                        double x = Math.cos(cLat)*Math.sin(tLat) - Math.sin(cLat)*Math.cos(tLat)*Math.cos(dLon);
+                        double bearing = Math.toDegrees((Math.atan2(y, x)));
+                        bearing = (360 - ((bearing + 360) % 360));
+
+                        if(targetLocation == null){
+                            bearing = 0;
+                        }
+
+                        CameraPosition cp = new CameraPosition.Builder().target(new LatLng(location.getLatitude(),location.getLongitude())).bearing((float)bearing).zoom(15).build();
+
+                        //when the location changes, update the map by zooming to the location
+                        CameraUpdate center = CameraUpdateFactory.newCameraPosition(cp);
+
+                        googleMap.animateCamera(center);
+                    }
+                });
+
 			} catch (SecurityException securityException) {
 				Log.e(TAG, "We do not have access to our user's location to " +
 						"display it on our map.", securityException);
@@ -339,6 +381,14 @@ public class Graphics {
             if(callback != null){
                 callback.onMapReady(googleMap);
             }
+        }
+
+        public LatLng getTargetLocation() {
+            return targetLocation;
+        }
+
+        public void setTargetLocation(LatLng targetLocation) {
+            this.targetLocation = targetLocation;
         }
     }
 }
