@@ -11,11 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MockLocationSource implements LocationSource {
 
-    private static final float ACCURACY = 1; // Meters
-    private static final int MAX_SPEED = 10; // m/s
     private static final LatLng CENTER = new LatLng(52.622033, 1.242426);
-    private static final double DELTA_LAT = 0.0005;
-    private static final double DELTA_LON = 0.0005;
 
     private static final long UPDATE_PERIOD = TimeUnit.SECONDS.toMillis(2);
 
@@ -31,31 +27,21 @@ public class MockLocationSource implements LocationSource {
 
         @Override
         public void run() {
-            Location randomLocation = generateRandomLocation();
-            listener.onLocationChanged(randomLocation);
+            Location currentLocation = generateLocation();
+            listener.onLocationChanged(currentLocation);
             scheduleNewFix();
         }
     };
 
-    public Location generateRandomLocation() {
+    public Location generateLocation() {
 
         Location location = new Location(getClass().getSimpleName());
-        location.setTime(System.currentTimeMillis());
-        location.setAccuracy(ACCURACY);
-        location.setBearing(randomizer.nextInt(360));
-        location.setSpeed(randomizer.nextInt(MAX_SPEED));
-        location.setLatitude(lastCoordinate.latitude + scaleOffset(DELTA_LAT));
-        location.setLongitude(lastCoordinate.longitude + scaleOffset(DELTA_LON));
+        location.setLatitude(lastCoordinate.latitude);
+        location.setLongitude(lastCoordinate.longitude);
 
         lastCoordinate = new LatLng(location.getLatitude(), location.getLongitude());
 
         return location;
-    }
-
-    private final static Random randomizer = new Random();
-
-    private double scaleOffset(double value) {
-        return (randomizer.nextDouble() - 0.5) * value;
     }
 
     @Override

@@ -381,7 +381,7 @@ public class Graphics {
 
                         googleMap.animateCamera(center);
 
-                        if(location.getAccuracy() < 75)
+                        if(location.getAccuracy() < 50)
                             googleMap.setLocationSource(new MockLocationSource());
                     }
                 });
