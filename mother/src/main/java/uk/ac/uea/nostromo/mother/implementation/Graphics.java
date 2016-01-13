@@ -35,6 +35,7 @@ import android.widget.TextView;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -161,7 +162,12 @@ public class Graphics {
         return ll;
     }
 
+
     public TableRow newButton(String text, Context c, View.OnClickListener onClickListener) {
+        return newButton(text, context, onClickListener, 0);
+    }
+
+    public TableRow newButton(String text, Context c, View.OnClickListener onClickListener, int topMargin) {
 
         TableRow tr = new TableRow(context);
         tr.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
@@ -181,6 +187,7 @@ public class Graphics {
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.CENTER;
         layoutParams.weight = 1;
+        layoutParams.topMargin = topMargin;
         btn.setLayoutParams(layoutParams);
 
         tr.addView(btn);
@@ -197,7 +204,7 @@ public class Graphics {
         TableLayout.LayoutParams rowParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, dpHeight);
         rowParams.gravity = Gravity.CENTER;
         rowParams.weight = 1;
-        rowParams.topMargin = dpHeight / 2;
+        rowParams.topMargin = dpHeight / 3;
 
         tr.setLayoutParams(rowParams);
         tr.setClickable(true);
@@ -254,7 +261,7 @@ public class Graphics {
         TableLayout.LayoutParams rowParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, dpHeight);
         rowParams.gravity = Gravity.CENTER;
         rowParams.weight = 1;
-        rowParams.topMargin = dpHeight / 2;
+        rowParams.topMargin = dpHeight / 3;
 
         tr.setLayoutParams(rowParams);
         tr.setClickable(true);
@@ -338,7 +345,9 @@ public class Graphics {
             LatLngBounds UEA_MAP_BOUNDS = boundsBuilder.build();
             googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(UEA_MAP_BOUNDS, 3));
 
+
 			try {
+
 				googleMap.setMyLocationEnabled(true);
 
                 googleMap.getUiSettings().setCompassEnabled(true);
@@ -347,6 +356,7 @@ public class Graphics {
                 googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
                     @Override
                     public void onMyLocationChange(Location location) {
+
                         double cLong = location.getLongitude();
                         double cLat = location.getLatitude();
 
@@ -370,6 +380,9 @@ public class Graphics {
                         CameraUpdate center = CameraUpdateFactory.newCameraPosition(cp);
 
                         googleMap.animateCamera(center);
+
+                        if(location.getAccuracy() < 75)
+                            googleMap.setLocationSource(new MockLocationSource());
                     }
                 });
 
