@@ -23,7 +23,7 @@ public class DataObject<T> implements Iterable<DataObject<T>>, Iterator<DataObje
 	 *
 	 * @since    v1.0.0-alpha+20151227
 	 */
-	private int index = 0;
+	private int index = -1;
 
 	/**
 	 * A list of all of the children of this piece of data.
@@ -188,7 +188,7 @@ public class DataObject<T> implements Iterable<DataObject<T>>, Iterator<DataObje
 	 * @since    v1.0.0-alpha+20151227
 	 */
 	public void resetIterator() {
-		index = 0;
+		index = -1;
 	}
 
 	/**
