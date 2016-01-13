@@ -1,20 +1,12 @@
 package uk.ac.uea.nostromo.mother.implementation;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
-import android.view.Display;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TableLayout;
-
 import uk.ac.uea.nostromo.mother.Audio;
+import uk.ac.uea.nostromo.mother.DataIO;
 import uk.ac.uea.nostromo.mother.FileIO;
 import uk.ac.uea.nostromo.mother.Game;
 import uk.ac.uea.nostromo.mother.Screen;
@@ -33,6 +25,8 @@ import uk.ac.uea.nostromo.mother.Screen;
  * @since	v1.0.0-alpha+20151204
  */
 public abstract class AndroidGame extends Activity implements Game {
+    int mainTableLayout;
+
 	/**
 	 * @since	v1.0.0-alpha+20151204
 	 */
@@ -48,6 +42,10 @@ public abstract class AndroidGame extends Activity implements Game {
 	 */
     FileIO fileIO;
 
+    /**
+     * @since	v1.0.0-alpha+20151204
+     */
+    DataIO dataIO;
 	/**
 	 * @since	v1.0.0-alpha+20151204
 	 */
@@ -61,9 +59,9 @@ public abstract class AndroidGame extends Activity implements Game {
 	/**
 	 * @since	v1.0.0-alpha+20151204
 	 */
-    TableLayout rootLayout;
+    protected TableLayout rootLayout;
 
-	/**
+    /**
 	 * Handles the creation of the main game screen.
 	 * Instantiates the main renderer, graphics object (for handling basic graphical operations such as  drawing to the canvas),
 	 * the file input and output handler, audio handler, user input handler and the main screen.
@@ -71,17 +69,25 @@ public abstract class AndroidGame extends Activity implements Game {
 	 * @param	savedInstanceState	{@inheritDoc}
 	 * @since	v1.0.0-alpha+20151204
 	 */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState, int mainActivity, int mainTableLayout) {
         super.onCreate(savedInstanceState);
 
+        this.mainTableLayout = mainTableLayout;
         fileIO = new AndroidFileIO(this);
+        dataIO = new AndroidDataIO();
         audio = new AndroidAudio(this);
         graphics = new Graphics(this);
         screen = getInitScreen();
-        rootLayout = new TableLayout(this);
 
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        setContentView(mainActivity);
+
+        rootLayout = (TableLayout) findViewById(mainTableLayout);
+
+        TableLayout screenLayout = screen.getTableLayout();
+
+        rootLayout.addView(screenLayout);
     }
 
 	/**
@@ -92,8 +98,9 @@ public abstract class AndroidGame extends Activity implements Game {
     @Override
     public void onResume() {
         super.onResume();
-        wakeLock.acquire();
-        screen.resume();
+        //wakeLock.acquire();
+        if(screen != null)
+            screen.resume();
     }
 
 	/**
@@ -106,10 +113,11 @@ public abstract class AndroidGame extends Activity implements Game {
     @Override
     public void onPause() {
         super.onPause();
-        wakeLock.release();
-        screen.pause();
+        //wakeLock.release();
+        if(screen != null)
+            screen.pause();
 
-        if (isFinishing())
+        if (screen != null && isFinishing())
             screen.dispose();
     }
 
@@ -121,6 +129,16 @@ public abstract class AndroidGame extends Activity implements Game {
     @Override
     public FileIO getFileIO() {
         return fileIO;
+    }
+
+    /**
+     * Get handle to the current data input/output handler.
+     * @return An DataIO object for the games data input/output handler.
+     * @since	!_TODO__ {Barry Wright}
+     */
+    @Override
+    public DataIO getDataIO() {
+        return dataIO;
     }
 
 	/**
@@ -153,10 +171,20 @@ public abstract class AndroidGame extends Activity implements Game {
         if (screen == null)
             throw new IllegalArgumentException("Screen must not be null");
 
-        this.screen.pause();
-        this.screen.dispose();
-        screen.resume();
-        screen.update(0);
+        rootLayout.removeAllViews();
+        rootLayout = (TableLayout) findViewById(mainTableLayout);
+
+        rootLayout.addView(screen.getTableLayout());
+
+        if(this.screen != null) {
+            this.screen.pause();
+            this.screen.dispose();
+        }
+
+        if(screen != null){
+            screen.resume();
+            screen.update(0);
+        }
         this.screen = screen;
     }
     

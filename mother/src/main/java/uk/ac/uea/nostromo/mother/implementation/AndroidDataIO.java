@@ -4,6 +4,9 @@
 
 package uk.ac.uea.nostromo.mother.implementation;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import uk.ac.uea.nostromo.mother.*;
 
 /**
@@ -14,6 +17,9 @@ import uk.ac.uea.nostromo.mother.*;
  * @since	v1.0.0-alpha+20151227
  */
 public class AndroidDataIO implements uk.ac.uea.nostromo.mother.DataIO {
+	SharedPreferences preferences;
+
+
 	/**
 	 * {@inheritDoc}
 	 *
@@ -61,7 +67,7 @@ public class AndroidDataIO implements uk.ac.uea.nostromo.mother.DataIO {
 	 */
 	@Override
 	public <T> DataObject readDataList(DataIOStrategy<T> reader) {
-		throw new UnsupportedOperationException("The method `AndroidDataIO.readDataList(DataIOStrategy<T>)` is yet to be implemented.");
+		return reader.readData();
 	}
     
 	/**
@@ -70,7 +76,10 @@ public class AndroidDataIO implements uk.ac.uea.nostromo.mother.DataIO {
 	 * @since	v1.0.0-alpha+20151227
 	 */
 	@Override
-	public android.content.SharedPreferences getSharedPref() {
-		throw new UnsupportedOperationException("The method `AndroidDataIO.getSharedPref()` is yet to be implemented.");
+	public android.content.SharedPreferences getSharedPref(String prefName, Context context) {
+		if(preferences == null)
+			preferences = context.getSharedPreferences(prefName, 0);
+
+		return preferences;
 	}
 }

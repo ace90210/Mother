@@ -4,118 +4,197 @@
 
 package uk.ac.uea.nostromo.mother;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * A representation of a <em>blob</em> of data that is found in a larger
  * structure of a file.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
  * @version	v1.0.0
- * @since	v1.0.0-alpha+20151227
+ * @since    v1.0.0-alpha+20151227
  */
-public class DataObject {
+public class DataObject<T> implements Iterable<DataObject<T>>, Iterator<DataObject<T>>  {
+
+	/**
+	 * The current index of the child
+	 *
+	 * @since    v1.0.0-alpha+20151227
+	 */
+	private int index = -1;
+
 	/**
 	 * A list of all of the children of this piece of data.
 	 *
-	 * @since	v1.0.0-alpha+20151227
+	 * @since    v1.0.0-alpha+20151227
 	 */
 	private java.util.List<DataObject> children;
+
+	public T getData() {
+		return data;
+	}
 
 	/**
 	 * The actual data stored in this encapsulation.
 	 *
-	 * @since	v1.0.0-alpha+20151227
+	 * @since    v1.0.0-alpha+20151227
 	 */
-	private Object data;
+	private T data;
 
 	/**
-	 * !_TODO__ [Alex Melbourne] : Write this piece of documentation.
+	 * Constructor
+	 *
+	 * @since    v1.0.0-alpha+20151227
+	 */
+	public DataObject() {
+		children = new ArrayList<DataObject>();
+	}
+
+	/**
+	 * Constructor
+	 *
+	 * @param	data The initial value for the data object
+	 * @since    v1.0.0-alpha+20151227
+	 */
+	public DataObject(T data) {
+		if(children == null)
+			children = new ArrayList<DataObject>();
+
+		this.children = children;
+		this.data = data;
+	}
+
+	/**
+	 * Constructor
+	 *
+	 * @param	children Any list of child {DataObjects} to initialise this objects children with
+	 * @param	data The initial value for the data object
+	 * @since    v1.0.0-alpha+20151227
+	 */
+	public DataObject(List<DataObject> children, T data) {
+		if(children == null)
+			children = new ArrayList<DataObject>();
+
+		this.children = children;
+		this.data = data;
+	}
+
+	/**
+	 * Sets the value of the current data in this DataObject
 	 *
 	 * @param	data	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	v1.0.0-alpha+20151227
+	 * @since    v1.0.0-alpha+20151227
 	 */
-	public void setData(Object data) {
-		throw new UnsupportedOperationException("The method `DataObject.setData(Object)` is yet to be implemented.");
+	public void setData(T data) {
+		this.data = data;
 	}
 
 	/**
-	 * !_TODO__ [Alex Melbourne] : Write this piece of documentation.
+	 * Adds new data to the current data in this {DataObject}. This will be added as a child object if this object already contains data.
 	 *
-	 * @param	child	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
-	 * @throws	UnsupportedOperationException	In all cases. This
-	 *											method is yet to be implemented.
-	 * @since	v1.0.0-alpha+20151227
+	 * @param	data	!_TODO__ [Barry Wright] : Write this piece of documentation.
+	 * @since    v1.0.0-alpha+20151227
+	 */
+	public void addData(T data){
+		if(this.data == null)
+			setData(data);
+		else {
+			addChild(new DataObject<T>(data));
+		}
+	}
+
+	/**
+	 * Add a child {DataObject} this is {DataObject}
+	 *
+	 * @param	child	The Child Data Object top be added
+	 * @since    v1.0.0-alpha+20151227
 	 */
 	public void addChild(DataObject child) {
-		throw new UnsupportedOperationException("The method `DataObject.addChild(DataObject)` is yet to be implemented.");
+		children.add(child);
 	}
 
 	/**
-	 * !_TODO__ [Alex Melbourne] : Write this piece of documentation.
+	 * Remove a child from this objects children
 	 *
 	 * @param	child	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	v1.0.0-alpha+20151227
+	 * @since    v1.0.0-alpha+20151227
 	 */
 	public void removeChild(DataObject child) {
-		throw new UnsupportedOperationException("The method `DataObject.removeChild(DataObject)` is yet to be implemented.");
+		children.remove(child);
+		if(index >= children.size())
+			index = children.size() - 1;
+	}
+
+	@Override
+	public void remove() {
+		children.remove(index);
+		if(index >= children.size())
+			index = children.size() - 1;
 	}
 
 	/**
-	 * !_TODO__ [Alex Melbourne] : Write this piece of documentation.
+	 * Returns a list of all the child {DataObjects}
 	 *
-	 * @return	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
+	 * @return	A list of all the child {DataObjects}
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	v1.0.0-alpha+20151227
+	 * @since    v1.0.0-alpha+20151227
 	 */
 	public java.util.List<DataObject> getChildren() {
-		throw new UnsupportedOperationException("The method `DataObject.getChildren()` is yet to be implemented.");
+		return children;
 	}
 
 	/**
-	 * !_TODO__ [Alex Melbourne] : Write this piece of documentation.
+	 * Returns true if the {DataObject} has more elements. (In other words, returns true if next() would return an element rather than throwing an exception.)
 	 *
-	 * @return	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
+	 * @return	true if the {DataObject} has more elements
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	v1.0.0-alpha+20151227
+	 * @since    v1.0.0-alpha+20151227
 	 */
-	public Boolean hasNext() {
-		throw new UnsupportedOperationException("The method `DataObject.hasNext()` is yet to be implemented.");
+	@Override
+	public boolean hasNext() {
+			return index + 1 < children.size();
 	}
 
 	/**
-	 * !_TODO__ [Alex Melbourne] : Write this piece of documentation.
+	 * Returns the next element
 	 *
-	 * @return	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
+	 * @return	the next element
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	v1.0.0-alpha+20151227
+	 * @since    v1.0.0-alpha+20151227
 	 */
-	public Object nextData() {
-		throw new UnsupportedOperationException("The method `DataObject.nextData()` is yet to be implemented.");
+	@Override
+	public DataObject next() {
+		index++;
+
+		if(index >= children.size())
+			index = children.size() - 1;
+		return children.get(index);
 	}
 
 	/**
-	 * !_TODO__ [Alex Melbourne] : Write this piece of documentation.
+	 * Resets the iteration back to its first element.
 	 *
 	 * @throws	UnsupportedOperationException	In all cases. This
 	 *											method is yet to be implemented.
-	 * @since	v1.0.0-alpha+20151227
+	 * @since    v1.0.0-alpha+20151227
 	 */
 	public void resetIterator() {
-		throw new UnsupportedOperationException("The method `DataObject.resetIterator()` is yet to be implemented.");
+		index = -1;
 	}
 
 	/**
 	 * Search through this {@code DataObject} in an attempt to find a
 	 * term that matches {@code term}.
 	 *
-	 * @param	term		The pattern to be used in finding matches in
-	 *						this {@code DataObject}.
 	 * @param	comparator	The comparison function to use when
 	 *						comparing items.
 	 * @return	A {@code DataObject} containing the matched term an its
@@ -124,7 +203,24 @@ public class DataObject {
 	 *											method is yet to be implemented.
 	 * @since	v1.0.0-alpha+20151227
 	 */
-	public DataObject search(String term, java.util.Comparator comparator) {
-		throw new UnsupportedOperationException("The method `DataObject.search(String, java.util.Comparator)` is yet to be implemented.");
+	public DataObject search(Comparable<T> comparator) {
+
+		DataObject output = new DataObject();
+		if(comparator.compareTo(data) == 1){
+			output.addData(data);
+		}
+
+		for (int i = 0; i < children.size(); i++) {
+			DataObject<T> result = children.get(i).search(comparator);
+			if(result != null)
+				output.addData(result);
+		}
+
+		return output.getData() != null ? output : null;
+	}
+
+	@Override
+	public Iterator<DataObject<T>> iterator() {
+		return this;
 	}
 }

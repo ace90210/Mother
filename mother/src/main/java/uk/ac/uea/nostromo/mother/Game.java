@@ -30,6 +30,14 @@ public interface Game {
 	FileIO getFileIO();
 
 	/**
+	 * Gain a reference to the {@code DataIO} singleton.
+	 *
+	 * @return	The {@code DataIO} singleton.
+	 * @since	!_TODO__ {Barry Wright}
+	 */
+	DataIO getDataIO();
+
+	/**
 	 * Gain a reference to the {@code Graphics} singleton.
 	 *
 	 * @return	The {@code Graphics} singleton.

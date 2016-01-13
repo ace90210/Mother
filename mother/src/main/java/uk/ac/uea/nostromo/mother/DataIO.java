@@ -4,6 +4,8 @@
 
 package uk.ac.uea.nostromo.mother;
 
+import android.content.Context;
+
 /**
  * An organised interface designed for file access through either
  * streams, or through the {@code DataIOStrategy} mechanism.
@@ -70,8 +72,10 @@ public interface DataIO {
 	/**
 	 * !_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 *
+	 * @param prefName The name of the preference file to load
+	 * @param context The application context
 	 * @return	!_TODO__ [Alex Melbourne] : Write this piece of documentation.
 	 * @since	v1.0.0-alpha+20151227
 	 */
-	android.content.SharedPreferences getSharedPref();
+	android.content.SharedPreferences getSharedPref(String prefName, Context context);
 }

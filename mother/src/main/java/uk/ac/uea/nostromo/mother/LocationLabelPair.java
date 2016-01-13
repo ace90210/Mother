@@ -1,5 +1,5 @@
 /*
- * LocationLabelPair.java	v1.0.0	2015-12-02
+ * LocationLabelPair.java	v1.1.0	2015-12-23
  */
 
 package uk.ac.uea.nostromo.mother;
@@ -12,55 +12,61 @@ package uk.ac.uea.nostromo.mother;
  * that "has it all", has no concept of a tuple.</p>
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v1.0.0
+ * @version	v1.1.0
  * @since	v1.0.0-alpha+20151227
  */
 public class LocationLabelPair {
 	/**
-	 * Modify the internal <i>human-readable</i> name for this location.
+	 * A human readable description of the location that is stored
+	 * alongside this string.
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	String locationLabel;
+
+	/**
+	 * The actual coordinates of this location-label pair.
+	 */
+	Location coordinates;
+
+	/**
+	 * Modify the internal <em>human-readable</em> name for this
+	 * location.
 	 *
 	 * @param	label	The new name for this location.
-	 * @throws	UnsupportedOperationException	In all cases. This
-	 *			method is yet to be implemented.
-	 * @since	v1.0.0-alpha+20151227
+	 * @since	@since	v1.0.0-alpha+20151227
 	 */
 	public void setLabel(String label) {
-		throw new UnsupportedOperationException("The method `LocationLabelPair.setLabel(String)` is yet to be implemented.");
+		locationLabel = label;
 	}
 
 	/**
 	 * Change the stored location for this pairing.
 	 *
 	 * @param	location	The new GPS location for this pairing.
-	 * @throws	UnsupportedOperationException	In all cases. This
-	 *			method is yet to be implemented.
-	 * @since	v1.0.0-alpha+20151227
+	 * @since	@since	v1.0.0-alpha+20151227
 	 */
 	public void setLocation(Location location) {
-		throw new UnsupportedOperationException("The method `LocationLabelPair.setLocation(Location)` is yet to be implemented.");
+		coordinates = location;
 	}
 
 	/**
 	 * Returns the value representing the longitude of this location.
 	 *
 	 * @return	The label portion of this pairing.
-	 * @throws	UnsupportedOperationException	In all cases. This
-	 *			method is yet to be implemented.
-	 * @since	v1.0.0-alpha+20151227
+	 * @since	@since	v1.0.0-alpha+20151227
 	 */
 	public String getLabel() {
-		throw new UnsupportedOperationException("The method `LocationLabelPair.getLabel()` is yet to be implemented.");
+		return locationLabel;
 	}
 
 	/**
 	 * Returns the value representing the longitude of this location.
 	 *
 	 * @return	The location portion of this pairing.
-	 * @throws	UnsupportedOperationException	In all cases. This
-	 *			method is yet to be implemented.
-	 * @since	v1.0.0-alpha+20151227
+	 * @since	@since	v1.0.0-alpha+20151227
 	 */
 	public Location getLocation() {
-		throw new UnsupportedOperationException("The method `LocationLabelPair.getLocation()` is yet to be implemented.");
+		return coordinates;
 	}
 }
